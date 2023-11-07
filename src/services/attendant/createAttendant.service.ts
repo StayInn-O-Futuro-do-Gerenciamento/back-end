@@ -28,9 +28,7 @@ export const createAttendantService = async (
 
   await attendantRepository.save(newAttendant);
 
-  console.log(newAttendant);
-
   const attendant = returnAttendantSchemaWithoutPass.parse(newAttendant);
-  console.log(attendant);
+
   return attendant;
 };

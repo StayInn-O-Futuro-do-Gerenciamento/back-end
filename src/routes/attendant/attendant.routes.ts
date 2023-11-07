@@ -1,7 +1,14 @@
 import { Router } from "express";
-import { createAttendantController, updateAttendantController } from "../../controllers";
+import {
+  createAttendantController,
+  deleteAttendantController,
+  loginAttendantController,
+  updateAttendantController,
+} from "../../controllers";
 
 export const attendantRouter: Router = Router();
 
 attendantRouter.post("", createAttendantController);
-attendantRouter.patch("/:id", updateAttendantController)
+attendantRouter.post("/login",loginAttendantController)
+attendantRouter.patch("/:id", updateAttendantController);
+attendantRouter.delete("/:id", deleteAttendantController);

@@ -14,11 +14,17 @@ export const updateAttendantService = async (
   const attendantRepository: Repository<Attendant> =
     AppDataSource.getRepository(Attendant);
 
-  const oldData = await attendantRepository.findOneBy({
-    id: updateId,
+  const oldData = await attendantRepository.findOne({
+    where: {
+      id: updateId,
+    },
+    relations: {
+      manager: true,
+    },
   });
 
   const attendant = attendantRepository.create({
+    ...oldData,
     name: attendantData.name || oldData!.name,
     password: attendantData.password || oldData!.password,
   });

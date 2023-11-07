@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
-import { createAttendantService } from "../../services/attendant/createAttendant.service";
-import { updateAttendantService } from "../../services/attendant/updateAttendant.service";
+import {
+  createAttendantService,
+  deleteAttendantService,
+  updateAttendantService,
+} from "../../services";
 
 export const createAttendantController = async (
   request: Request,
@@ -26,4 +29,8 @@ export const updateAttendantController = async (
 export const deleteAttendantController = async (
   request: Request,
   response: Response
-) => {};
+) => {
+  await deleteAttendantService(request.params.id);
+
+  return response.status(204).send();
+};
