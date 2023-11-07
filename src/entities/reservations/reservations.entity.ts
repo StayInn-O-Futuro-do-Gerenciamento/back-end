@@ -2,6 +2,8 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -39,9 +41,9 @@ export class Reservations {
   @JoinColumn()
   attendant: Attendant;
 
-  @OneToMany(() => Guest, (guest) => guest.reservation)
-  @JoinColumn()
-  guests: Guest;
+  @ManyToMany(() => Guest, (guest) => guest.reservations)
+  @JoinTable()
+  guests: Guest[];
 
   @ManyToOne(() => Room, (room) => room.reservation)
   @JoinColumn()
