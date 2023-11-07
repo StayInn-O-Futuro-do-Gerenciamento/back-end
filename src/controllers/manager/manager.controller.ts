@@ -5,11 +5,6 @@ export const createManagerController = async (
   response: Response
 ) => {};
 
-export const loginManagerController = async (
-  request: Request,
-  response: Response
-) => {};
-
 export const updateManagerController = async (
   request: Request,
   response: Response
