@@ -1,8 +1,19 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { array, nullable } from "zod";
+import { Attendant } from "../attendant/attendant.entity";
+import { ReservationsHistory } from "../reservationsHistory/reservationsHistory.entity";
+import { Guest } from "../guest/guest.entity";
+import { Room } from "../room/room.entity";
 
 @Entity("reservations")
-class Reservations {
+export class Reservations {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -23,4 +34,16 @@ class Reservations {
 
   @Column({ length: 80, type: "varchar" })
   feedBack: string;
+
+  @ManyToOne(() => Attendant, (attendant) => attendant.reservations)
+  @JoinColumn()
+  attendant: Attendant;
+
+  @OneToMany(() => Guest, (guest) => guest.reservation)
+  @JoinColumn()
+  guests: Guest;
+
+  @ManyToOne(() => Room, (room) => room.reservation)
+  @JoinColumn()
+  rooms: Room;
 }

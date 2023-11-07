@@ -1,8 +1,16 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { array, nullable } from "zod";
+import { Reservations } from "../reservations/reservations.entity";
 
 @Entity()
-class ReservationsHistory {
+export class ReservationsHistory {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -11,4 +19,10 @@ class ReservationsHistory {
 
   @Column({ type: "date" })
   checkout: Date;
+
+  @Column()
+  id_guest: string;
+
+  @Column()
+  id_room: string;
 }

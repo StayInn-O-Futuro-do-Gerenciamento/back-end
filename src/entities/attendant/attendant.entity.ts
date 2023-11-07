@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Manager, Reservations } from "../index";
 
 @Entity("attendant")
 export class Attendant {
@@ -13,4 +22,11 @@ export class Attendant {
 
   @Column({ type: "varchar", default: "Attendant" })
   type: string;
+
+  @ManyToOne(() => Manager, (manager) => manager.attendants)
+  @JoinColumn()
+  manager: Manager;
+
+  @OneToMany(() => Reservations, (reservation) => reservation.attendant)
+  reservations: Array<Reservations>;
 }

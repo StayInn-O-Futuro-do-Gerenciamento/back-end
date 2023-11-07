@@ -3,10 +3,12 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { TypeRoom } from "../typeRoom/typeRoom.entity";
 
 @Entity("offer")
 export class Offer {
@@ -27,4 +29,7 @@ export class Offer {
 
   @Column({ type: "timestamp" })
   finishDate: string | Date;
+
+  @ManyToMany(() => TypeRoom, (typeRoom) => typeRoom.offer)
+  typeRoom: TypeRoom[];
 }

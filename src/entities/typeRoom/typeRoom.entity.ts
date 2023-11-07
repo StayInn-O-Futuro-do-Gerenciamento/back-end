@@ -1,12 +1,15 @@
 import {
-  BeforeInsert,
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Room } from "../room/room.entity";
+import { Offer } from "../offer/offer.entity";
 
 const Rate = {
   strics: "Restrito",
@@ -36,4 +39,11 @@ export class TypeRoom {
 
   @Column({ type: "enum", enum: Rate, default: Rate.flexible })
   rate: string;
+
+  @ManyToMany(() => Room, (room) => room.typeRoom)
+  rooms: Room[];
+
+  @ManyToOne(() => Offer, (offer) => offer.typeRoom)
+  @JoinColumn()
+  offer: Offer;
 }
