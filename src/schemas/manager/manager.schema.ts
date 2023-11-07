@@ -11,3 +11,6 @@ export const managerReturnCreteSchema = managerCreateSchema.extend({
   id: z.string(),
   type: z.string(),
 });
+
+export const managerReturnCreteSchemaWhithoutPass =
+  managerReturnCreteSchema.omit({ password: true });
