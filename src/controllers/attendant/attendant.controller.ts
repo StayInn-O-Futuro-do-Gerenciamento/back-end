@@ -5,11 +5,6 @@ export const createAttendantController = async (
   response: Response
 ) => {};
 
-export const loginAttendantController = async (
-  request: Request,
-  response: Response
-) => {};
-
 export const updateAttendantController = async (
   request: Request,
   response: Response

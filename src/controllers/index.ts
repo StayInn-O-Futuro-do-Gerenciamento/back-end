@@ -1,9 +1,9 @@
 import {
   createAttendantController,
   deleteAttendantController,
-  loginAttendantController,
   updateAttendantController,
 } from "./attendant/attendant.controller";
+import { loginAttendantController } from "./attendant/loginAttendant.controller";
 import {
   createGuestController,
   deleteGuestController,
@@ -15,8 +15,8 @@ import {
   listHotelController,
   updateHotelController,
 } from "./hotel/hotel.controller";
+import { loginManagerController } from "./manager/loginManager.controller";
 import {
-  loginManagerController,
   createManagerController,
   deleteManagerController,
   updateManagerController,
