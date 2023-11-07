@@ -10,3 +10,6 @@ export const managerUpdateSchema = managerCreateSchema.partial();
 export const managerReturnCreteSchema = managerCreateSchema.extend({
   id: z.string(),
 });
+
+export const managerReturnCreteSchemaWhithoutPass =
+  managerReturnCreteSchema.omit({ password: true });
