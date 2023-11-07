@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Attendant } from "../attendant/attendant.entity";
+import { Hotel } from "../hotel/hotel.entity";
 
 @Entity("manager")
 export class Manager {
@@ -13,4 +21,10 @@ export class Manager {
 
   @Column({ type: "varchar", default: "Manager" })
   type: string;
+
+  @OneToOne(() => Hotel, (hotel) => hotel.manager)
+  hotel: Hotel;
+
+  @OneToMany(() => Attendant, (attendant) => attendant.manager)
+  attendants: Attendant[];
 }

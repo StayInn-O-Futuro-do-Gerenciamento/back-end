@@ -1,5 +1,5 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
-import { array, nullable } from "zod";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Guest } from "../guest/guest.entity";
 
 @Entity("address")
 export class Address {
@@ -20,4 +20,7 @@ export class Address {
 
   @Column({ length: 10, type: "varchar" })
   zipCode: string;
+
+  @OneToOne(() => Guest, (guest) => guest.address)
+  guest: Guest;
 }

@@ -1,5 +1,14 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { array, nullable } from "zod";
+import { Reservations } from "../reservations/reservations.entity";
+import { Address } from "../address/address.entity";
 
 @Entity("guest")
 export class Guest {
@@ -26,4 +35,11 @@ export class Guest {
 
   @Column({ array: true, length: 9, type: "varchar" })
   emergencyContacts: { name: string; phoneNumber: string }[];
+
+  @OneToOne(() => Address, (address) => address.guest)
+  @JoinColumn()
+  address: Address;
+
+  @ManyToOne(() => Reservations, (reservation) => reservation.guests)
+  reservation: Array<Reservations>;
 }

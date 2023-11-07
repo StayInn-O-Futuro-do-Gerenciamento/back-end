@@ -1,12 +1,14 @@
 import {
-  BeforeInsert,
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Reservations } from "../reservations/reservations.entity";
+import { TypeRoom } from "../typeRoom/typeRoom.entity";
+import { Hotel } from "../hotel/hotel.entity";
 
 const Status = {
   clean: "Limpo",
@@ -32,4 +34,15 @@ export class Room {
 
   @Column({ type: "varchar" })
   floor: string;
+
+  @ManyToOne(() => Hotel, (hotel) => hotel.rooms)
+  @JoinColumn()
+  hotel: Hotel;
+
+  @OneToMany(() => Reservations, (reservation) => reservation.rooms)
+  reservation: Reservations;
+
+  @ManyToOne(() => TypeRoom, (typeRoom) => typeRoom.rooms)
+  @JoinColumn()
+  typeRoom: TypeRoom;
 }
