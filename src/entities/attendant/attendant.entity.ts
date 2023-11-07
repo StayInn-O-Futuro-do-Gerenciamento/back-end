@@ -32,8 +32,8 @@ export class Attendant {
   @OneToMany(() => Reservations, (reservation) => reservation.attendant)
   reservations: Array<Reservations>;
 
-  @BeforeInsert()
-  hashPass() {
-    this.password = hashSync(this.password, 9);
-  }
+  // @BeforeInsert()
+  // hashPass() {
+  //   this.password = hashSync(this.password, 9);
+  // }
 }

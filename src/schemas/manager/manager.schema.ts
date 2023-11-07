@@ -9,4 +9,5 @@ export const managerUpdateSchema = managerCreateSchema.partial();
 
 export const managerReturnCreteSchema = managerCreateSchema.extend({
   id: z.string(),
+  type: z.string(),
 });
