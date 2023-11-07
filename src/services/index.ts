@@ -1,3 +1,7 @@
+import { createAttendantService } from "./attendant/createAttendant.service";
+import { deleteAttendantService } from "./attendant/deleteAttendant.service";
+import { loginAttendantService } from "./attendant/loginAttendant.service";
+import { updateAttendantService } from "./attendant/updateAttendant.service";
 import { createManagerService } from "./manager/createManager.service";
 import { deleteManagerService } from "./manager/deleteManager.service";
 import { loginManagerService } from "./manager/loginManager.service";
@@ -8,4 +12,8 @@ export {
   deleteManagerService,
   loginManagerService,
   updateManagerService,
+  updateAttendantService,
+  createAttendantService,
+  deleteAttendantService,
+  loginAttendantService,
 };

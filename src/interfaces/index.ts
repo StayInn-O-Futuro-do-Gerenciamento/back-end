@@ -1,5 +1,6 @@
 import {
   tAttendantReq,
+  tAttendantReqLogin,
   tAttendantReturn,
   tAttendantReturnWithoutPass,
   tAttendantUpdateReq,
@@ -23,4 +24,5 @@ export {
   tManagerReturnWithoutPass,
   tManagerUpdate,
   tManagerUpdateRequest,
+  tAttendantReqLogin,
 };
