@@ -31,7 +31,7 @@ export const loginManagerService = async (
 
   const token: string = Jwt.sign({}, process.env.SECRET_KEY!, {
     expiresIn: "24h",
-    subject: String(manager.id),
+    subject: manager.id,
   });
 
   return { token: token };

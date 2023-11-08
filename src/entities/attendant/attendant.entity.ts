@@ -1,5 +1,6 @@
 import {
   BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   JoinColumn,
@@ -19,7 +20,7 @@ export class Attendant {
   @Column({ type: "varchar", length: 50 })
   name: string;
 
-  @Column({ type: "varchar", length: 20 })
+  @Column({ type: "varchar" })
   password: string;
 
   @Column({ type: "varchar", default: "Attendant" })
@@ -32,8 +33,9 @@ export class Attendant {
   @OneToMany(() => Reservations, (reservation) => reservation.attendant)
   reservations: Array<Reservations>;
 
-  // @BeforeInsert()
-  // hashPass() {
-  //   this.password = hashSync(this.password, 9);
-  // }
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPass() {
+    this.password = hashSync(this.password, 9);
+  }
 }

@@ -12,6 +12,6 @@ managerRouter.post("", createManagerController);
 
 managerRouter.post("/login", loginManagerController);
 
-managerRouter.patch("", updateManagerController);
+managerRouter.patch("/:id", updateManagerController);
 
-managerRouter.delete("", deleteManagerController);
+managerRouter.delete("/:id", deleteManagerController);
