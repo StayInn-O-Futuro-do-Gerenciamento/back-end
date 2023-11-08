@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
+import { createGuestService } from "../../services";
 
 export const createGuestController = async (
   request: Request,
   response: Response
-) => {};
+) => {
+  const newGuest = await createGuestService(request.body);
+
+  return response.status(201).json(newGuest);
+};
 
 export const getGuestController = async (
   request: Request,

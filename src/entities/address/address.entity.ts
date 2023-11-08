@@ -23,4 +23,5 @@ export class Address {
 
   @OneToOne(() => Guest, (guest) => guest.address)
   guest: Guest;
+  newAddress: Address;
 }
