@@ -5,10 +5,23 @@ import {
   loginAttendantController,
   updateAttendantController,
 } from "../../controllers";
+import { validateTokenMiddleware } from "../../middlewares";
 
 export const attendantRouter: Router = Router();
 
-attendantRouter.post("", createAttendantController);
-attendantRouter.post("/login",loginAttendantController)
-attendantRouter.patch("/:id", updateAttendantController);
-attendantRouter.delete("/:id", deleteAttendantController);
+attendantRouter.post("", validateTokenMiddleware, createAttendantController);
+attendantRouter.post(
+  "/login",
+  validateTokenMiddleware,
+  loginAttendantController
+);
+attendantRouter.patch(
+  "/:id",
+  validateTokenMiddleware,
+  updateAttendantController
+);
+attendantRouter.delete(
+  "/:id",
+  validateTokenMiddleware,
+  deleteAttendantController
+);

@@ -3,6 +3,7 @@ import {
   tAttendantReqLogin,
   tAttendantReturn,
   tAttendantReturnWithoutPass,
+  tAttendantReturnWithoutPassManager,
   tAttendantUpdateReq,
 } from "./attendant/attendant.interface";
 
@@ -25,4 +26,5 @@ export {
   tManagerUpdate,
   tManagerUpdateRequest,
   tAttendantReqLogin,
+  tAttendantReturnWithoutPassManager,
 };
