@@ -40,6 +40,9 @@ export class TypeRoom {
   @Column({ type: "enum", enum: Rate, default: Rate.flexible })
   rate: string;
 
+  @Column({ type: "int" })
+  roomTypeQuantity: number;
+
   @ManyToMany(() => Room, (room) => room.typeRoom)
   rooms: Room[];
 

@@ -1,4 +1,6 @@
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   OneToMany,
@@ -7,6 +9,7 @@ import {
 } from "typeorm";
 import { Attendant } from "../attendant/attendant.entity";
 import { Hotel } from "../hotel/hotel.entity";
+import { hashSync } from "bcryptjs";
 
 @Entity("manager")
 export class Manager {
@@ -16,7 +19,7 @@ export class Manager {
   @Column({ type: "varchar", length: 50 })
   name: string;
 
-  @Column({ type: "varchar", length: 20 })
+  @Column({ type: "varchar" })
   password: string;
 
   @Column({ type: "varchar", default: "Manager" })
@@ -27,4 +30,10 @@ export class Manager {
 
   @OneToMany(() => Attendant, (attendant) => attendant.manager)
   attendants: Attendant[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPass() {
+    this.password = hashSync(this.password, 9);
+  }
 }

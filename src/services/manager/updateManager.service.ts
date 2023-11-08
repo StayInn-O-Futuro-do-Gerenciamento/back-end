@@ -2,11 +2,11 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import {
   tManagerReturnWithoutPass,
-  tManagerUpdate,
   tManagerUpdateRequest,
 } from "../../interfaces";
 import { Manager } from "../../entities";
 import { managerReturnCreteSchemaWhithoutPass } from "../../schemas";
+import { AppError } from "../../errors";
 
 export const updateManagerService = async (
   managerData: tManagerUpdateRequest,
@@ -17,11 +17,23 @@ export const updateManagerService = async (
 
   const { name, password } = managerData;
 
-  const oldData = await managerRepository.findOneBy({
-    id: managerId,
+  // if (!managerId) {
+  //   throw new AppError("manager not found", 404);
+  // }
+  const oldData = await managerRepository.findOne({
+    where: {
+      id: managerId,
+    },
   });
 
+  console.log(oldData);
+
+  if (!oldData) {
+    throw new AppError("manager not found", 404);
+  }
+
   const manager = managerRepository.create({
+    ...oldData,
     password: password || oldData!.password,
     name: name || oldData!.name,
   });
