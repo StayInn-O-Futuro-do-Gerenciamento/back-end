@@ -17,10 +17,10 @@ export class Hotel {
   @Column({ type: "varchar" })
   name: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", default: 0 })
   numberRoomsTotal: number;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", default: 0 })
   numberFloorsTotal: number;
 
   @Column({ type: "varchar" })
