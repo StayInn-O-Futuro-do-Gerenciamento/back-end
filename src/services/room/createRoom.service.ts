@@ -2,6 +2,11 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { tReturnArrayRoom, tRoomRequest, tRoomReturn } from "../../interfaces";
 import { Hotel, Room, TypeRoom } from "../../entities";
+import { AppError } from "../../errors";
+
+// let roomsPerFloor;
+// let lastRoomNumber = 0;
+// let lastFloor = 0;
 
 // export const createRoomService = async (
 //   roomData: tRoomRequest
@@ -9,6 +14,17 @@ import { Hotel, Room, TypeRoom } from "../../entities";
 //   const roomRepository: Repository<Room> = AppDataSource.getRepository(Room);
 //   const typeRoomRepository: Repository<TypeRoom> =
 //     AppDataSource.getRepository(TypeRoom);
+//   const hotelRepository: Repository<Hotel> = AppDataSource.getRepository(Hotel);
+
+//   const hotel = await hotelRepository.find({});
+//   roomsPerFloor = hotel[0].roomsPerFloor;
+
+//   const room = await roomRepository.find({});
+
+//   if (room.length === 0) {
+//     lastRoomNumber = 0;
+//     lastFloor = 0;
+//   }
 
 //   const { status } = roomData;
 //   const {
@@ -31,34 +47,21 @@ import { Hotel, Room, TypeRoom } from "../../entities";
 //     await typeRoomRepository.save(newTypeRoom);
 //     newRoom = newTypeRoom;
 //   } else {
-//     Object.assign(existingTypeRoom, roomData.typeRoom);
+//     Object.assign(existingTypeRoom, roomData.typeRoom, {
+//       roomTypeQuantity: (existingTypeRoom.roomTypeQuantity += roomTypeQuantity),
+//     });
 
 //     existingTypeRoom = await typeRoomRepository.save(existingTypeRoom);
 //     newRoom = existingTypeRoom;
 //   }
 
-//   const maxRoom = await roomRepository
-//     .createQueryBuilder("room")
-//     .select(
-//       "MAX(CAST(SUBSTRING(room.roomNumber FROM POSITION('' IN room.roomNumber) + 1) AS INTEGER))",
-//       "maxRoom"
-//     )
-//     .addSelect(
-//       "MAX(CAST(SUBSTRING(room.floor FROM POSITION('' IN room.floor) + 6) AS INTEGER))",
-//       "maxFloor"
-//     )
-//     .getRawOne();
-
-//   let nextRoomNumber = maxRoom.maxRoom || 0;
-//   let nextFloor = maxRoom.maxFloor || 0;
-
 //   const generatedRooms = [];
-//   let andar = nextFloor + 1;
+//   let andar = lastFloor + 1;
 //   let andarLetter = String.fromCharCode(65 + andar - 1);
 
 //   for (let i = 1; i <= roomTypeQuantity; i++) {
 //     const room = new Room();
-//     room.roomNumber = `${andarLetter}${nextRoomNumber + i}`;
+//     room.roomNumber = `${andarLetter}${lastRoomNumber + i}`;
 //     room.status = status;
 //     room.secretKey = generateSecretKey();
 //     room.floor = `Andar ${andar}`;
@@ -66,16 +69,107 @@ import { Hotel, Room, TypeRoom } from "../../entities";
 
 //     generatedRooms.push(room);
 
-//     if ((nextRoomNumber + i) % 10 === 0) {
+//     if ((lastRoomNumber + i) % roomsPerFloor === 0) {
 //       andar++;
 //       andarLetter = String.fromCharCode(65 + andar - 1);
+//       lastFloor = andar - 1;
 //     }
 //   }
+
+//   lastRoomNumber += roomTypeQuantity;
 
 //   await roomRepository.save(generatedRooms);
 
 //   return generatedRooms;
 // };
+
+let roomsPerFloor;
+let lastRoomNumber = 0;
+let lastFloor = 0;
+
+export const createRoomService = async (
+  roomData: tRoomRequest
+): Promise<any> => {
+  const roomRepository: Repository<Room> = AppDataSource.getRepository(Room);
+  const typeRoomRepository: Repository<TypeRoom> =
+    AppDataSource.getRepository(TypeRoom);
+  const hotelRepository: Repository<Hotel> = AppDataSource.getRepository(Hotel);
+
+  const hotel = await hotelRepository.find({});
+  roomsPerFloor = hotel[0].roomsPerFloor;
+  const numberRoomsTotal = hotel[0].numberRoomsTotal;
+
+  const roomsCount = await roomRepository.count();
+
+  if (roomsCount === 0) {
+    lastRoomNumber = 0;
+    lastFloor = 0;
+  }
+
+  const { status } = roomData;
+  const {
+    roomTypeQuantity,
+    name,
+    description,
+    confort,
+    price,
+    personCount,
+    rate,
+  } = roomData.typeRoom;
+
+  let existingTypeRoom = await typeRoomRepository.findOne({ where: { name } });
+
+  let newRoom;
+
+  if (!existingTypeRoom) {
+    const roomType = roomData.typeRoom;
+    const newTypeRoom: TypeRoom = typeRoomRepository.create(roomType);
+    await typeRoomRepository.save(newTypeRoom);
+    newRoom = newTypeRoom;
+  } else {
+    Object.assign(existingTypeRoom, roomData.typeRoom, {
+      roomTypeQuantity: (existingTypeRoom.roomTypeQuantity += roomTypeQuantity),
+    });
+
+    existingTypeRoom = await typeRoomRepository.save(existingTypeRoom);
+    newRoom = existingTypeRoom;
+  }
+
+  const generatedRooms = [];
+  let andar = lastFloor + 1;
+  let andarLetter = String.fromCharCode(65 + andar - 1);
+
+  for (let i = 1; i <= roomTypeQuantity; i++) {
+    if (roomsCount + i > numberRoomsTotal) {
+      throw new AppError(
+        `A capacidade máxima de quartos (${numberRoomsTotal}) foi atingida. Restam ${
+          numberRoomsTotal - roomsCount
+        } quartos disponíveis.`
+      );
+    }
+
+    const room = new Room();
+    room.roomNumber = `${andarLetter}${lastRoomNumber + i}`;
+    room.status = status;
+    room.secretKey = generateSecretKey();
+    room.floor = `Andar ${andar}`;
+    room.typeRoom = newRoom;
+
+    generatedRooms.push(room);
+
+    if ((lastRoomNumber + i) % roomsPerFloor === 0) {
+      andar++;
+      andarLetter = String.fromCharCode(65 + andar - 1);
+      lastFloor = andar - 1;
+    }
+  }
+
+  lastRoomNumber += roomTypeQuantity;
+
+  await roomRepository.save(generatedRooms);
+
+  return generatedRooms;
+};
 
 function generateSecretKey(): string {
   let result = "";

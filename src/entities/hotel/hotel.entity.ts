@@ -21,7 +21,7 @@ export class Hotel {
   numberRoomsTotal: number;
 
   @Column({ type: "int", default: 0 })
-  numberFloorsTotal: number;
+  roomsPerFloor: number;
 
   @Column({ type: "varchar" })
   street: string;
