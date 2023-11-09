@@ -3,9 +3,10 @@ import express, { Application } from "express";
 import cors from "cors";
 import {
   attendantRouter,
-  guestRouter,
-  managerRouter,
   hotelRouter,
+  managerRouter,
+  guestRouter,
+  roomRouter,
 } from "./routes";
 
 import { handleErrors } from "./errors";
@@ -23,6 +24,7 @@ app.use("/attendant", attendantRouter);
 app.use("/guest", guestRouter);
 
 app.use("/hotel", hotelRouter);
+app.use("/room", roomRouter);
 
 app.use(handleErrors);
 export default app;

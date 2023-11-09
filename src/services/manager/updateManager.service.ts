@@ -17,30 +17,21 @@ export const updateManagerService = async (
 
   const { name, password } = managerData;
 
-  // if (!managerId) {
-  //   throw new AppError("manager not found", 404);
-  // }
   const oldData = await managerRepository.findOne({
     where: {
       id: managerId,
     },
   });
 
-  console.log(oldData);
-
   if (!oldData) {
     throw new AppError("manager not found", 404);
   }
 
-  const manager = managerRepository.create({
-    ...oldData,
-    password: password || oldData!.password,
-    name: name || oldData!.name,
-  });
+  Object.assign(oldData, managerData);
 
-  await managerRepository.save(manager);
+  await managerRepository.save(oldData);
 
-  const newManager = managerReturnCreteSchemaWhithoutPass.parse(manager);
+  const newManager = managerReturnCreteSchemaWhithoutPass.parse(oldData);
 
   return newManager;
 };
