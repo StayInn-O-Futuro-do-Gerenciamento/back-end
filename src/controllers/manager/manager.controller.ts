@@ -19,8 +19,6 @@ export const updateManagerController = async (
 ) => {
   const managerData = request.body;
   const managerId = request.params.id;
-  console.log(managerData);
-  console.log(managerId);
   const newManager = await updateManagerService(managerData, managerId);
 
   return response.status(200).json(newManager);

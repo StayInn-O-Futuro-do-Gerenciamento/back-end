@@ -13,6 +13,6 @@ managerRouter.post("", createManagerController);
 
 managerRouter.post("/login", loginManagerController);
 
-managerRouter.patch("", validateTokenMiddleware, updateManagerController);
+managerRouter.patch("/:id", validateTokenMiddleware, updateManagerController);
 
 managerRouter.delete("/:id", deleteManagerController);
