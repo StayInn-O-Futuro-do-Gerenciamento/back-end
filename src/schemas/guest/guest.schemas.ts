@@ -24,14 +24,14 @@ export const returnGuestSchema = z.object({
   rg: z.number(),
   cpf: z.number(),
   nationality: z.string(),
-  phoneNumbers: z.array(z.string()),
+  phoneNumbers: z.array(z.string().max(9)),
   emergencyContacts: z.array(
     z.object({
       name: z.string().max(50),
       phoneNumber: z.string().max(9),
     })
   ),
-  address: z.object({
+  address: addressCreateSchema.extend({
     id: z.string(),
   }),
 });

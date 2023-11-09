@@ -17,6 +17,7 @@ export const createGuestService = async (
   const { address, ...guestRequest } = guestData;
 
   const newAddress = addressRepository.create(address);
+
   await addressRepository.save(newAddress);
 
   const newGuest: Guest = guestRepository.create({

@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { createGuestService } from "../../services";
+import {
+  createGuestService,
+  deleteGuestService,
+  updateGuestService,
+} from "../../services";
 
 export const createGuestController = async (
   request: Request,
@@ -18,12 +22,22 @@ export const getGuestController = async (
 export const updateGuestController = async (
   request: Request,
   response: Response
-) => {};
+) => {
+  const guestData = request.body;
+  const guestId = response.locals.guestId;
+  const newGuest = await updateGuestService(guestData!, guestId!);
+
+  return response.status(200).json(newGuest);
+};
 
 export const deleteGuestController = async (
   request: Request,
   response: Response
-) => {};
+) => {
+  await deleteGuestService(request.params.guestId);
+
+  return response.status(204).send();
+};
 
 export const createAddressController = async (
   request: Request,
