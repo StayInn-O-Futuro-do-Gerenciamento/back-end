@@ -1,19 +1,24 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Hotel, Manager } from "../../entities";
-import { tHotelCreate } from "../../interfaces/hotel/hotel.interface";
-import { hotelCreateSchema } from "../../schemas/hotel/createHotel.schema";
+import {
+  tHotelCreate,
+  tHotelReturn,
+} from "../../interfaces/hotel/hotel.interface";
+import {
+  hotelCreateSchema,
+  hotelReturnSchema,
+} from "../../schemas/hotel/createHotel.schema";
 import { AppError } from "../../errors";
 
 export const createHotelService = async (
   hotelData: tHotelCreate,
   userId: string
-): Promise<any> => {
+): Promise<tHotelReturn> => {
   const hotelRepository: Repository<Hotel> = AppDataSource.getRepository(Hotel);
   const managerRepository: Repository<Manager> =
     AppDataSource.getRepository(Manager);
 
-  // Arrumar isso aqui - Ideia: Criar um middleware que salva as info do user direto em um RES
   const manager = await managerRepository.findOneBy({
     id: userId,
   });
@@ -33,5 +38,5 @@ export const createHotelService = async (
 
   await hotelRepository.save(hotelCreate);
 
-  return hotelCreateSchema.parse(hotelCreate);
+  return hotelReturnSchema.parse(hotelCreate);
 };
