@@ -23,11 +23,7 @@ export const updateAttendantService = async (
     },
   });
 
-  const attendant = attendantRepository.create({
-    ...oldData,
-    name: attendantData.name || oldData!.name,
-    password: attendantData.password || oldData!.password,
-  });
+  const attendant = Object.assign(oldData!, attendantData);
 
   await attendantRepository.save(attendant);
 

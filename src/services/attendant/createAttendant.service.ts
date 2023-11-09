@@ -10,23 +10,14 @@ import { returnAttendantSchemaWithoutPass } from "../../schemas";
 
 export const createAttendantService = async (
   attendantData: tAttendantReq,
-  managerId: string
+  manager: Manager
 ): Promise<tAttendantReturnWithoutPassManager> => {
   const attendantRepository: Repository<Attendant> =
     AppDataSource.getRepository(Attendant);
 
-  const managerRepository: Repository<Manager> =
-    AppDataSource.getRepository(Manager);
-
-  const findManager = await managerRepository.findOne({
-    where: {
-      id: managerId,
-    },
-  });
-
   const newAttendant = attendantRepository.create({
     ...attendantData,
-    manager: findManager!,
+    manager: manager,
   });
 
   await attendantRepository.save(newAttendant);
