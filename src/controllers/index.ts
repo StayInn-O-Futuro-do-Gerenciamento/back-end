@@ -38,7 +38,6 @@ import {
 import {
   listRoomController,
   createRoomController,
-  deleteRoomController,
   listRoomByIdController,
   updateRoomController,
 } from "./room/room.controller";
@@ -77,7 +76,6 @@ export {
   updateReservationController,
   listRoomController,
   createRoomController,
-  deleteRoomController,
   listRoomByIdController,
   updateRoomController,
   createTypeRoomController,
