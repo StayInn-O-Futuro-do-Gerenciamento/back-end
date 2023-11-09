@@ -11,6 +11,13 @@ import {
   managerReturnCreteSchemaWhithoutPass,
 } from "./manager/manager.schema";
 
+import {
+  roomCreateSchema,
+  typeRoomCreateSchema,
+  returnRoomCreateSchema,
+  returnTypeRoomCreateSchema,
+} from "./room/room.schema";
+
 export {
   managerCreateSchema,
   managerUpdateSchema,
@@ -20,4 +27,8 @@ export {
   attendantUpdateSchema,
   returnAttendantSchema,
   returnAttendantSchemaWithoutPass,
+  roomCreateSchema,
+  typeRoomCreateSchema,
+  returnRoomCreateSchema,
+  returnTypeRoomCreateSchema,
 };

@@ -14,6 +14,13 @@ import {
   tManagerUpdateRequest,
 } from "./manager/manager.interface";
 
+import {
+  tRoomRequest,
+  tRoomReturn,
+  tTypeRoomRequest,
+  tTypeRoomReturn,
+} from "./room/room.interface";
+
 export {
   tAttendantReq,
   tAttendantReturnWithoutPass,
@@ -25,4 +32,8 @@ export {
   tManagerUpdate,
   tManagerUpdateRequest,
   tAttendantReqLogin,
+  tRoomRequest,
+  tRoomReturn,
+  tTypeRoomRequest,
+  tTypeRoomReturn,
 };
