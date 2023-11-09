@@ -9,16 +9,9 @@ export const hotelCreateSchema = z.object({
   city: z.string().max(40),
 });
 
-// export const returnHotelCreateSchema = attendantCreateSchema.partial();
+export const hotelReturnSchema = hotelCreateSchema.extend({
+  id: z.string(),
+});
+export const hotelReturnAllSchema = z.array(hotelReturnSchema);
 
-// export const returnAttendantSchema = attendantCreateSchema
-//   .extend({
-//     id: z.string(),
-//     type: z.string(),
-//     manager: managerReturnCreteSchema,
-//   })
-//   .omit({ idManager: true });
-
-// export const returnAttendantSchemaWithoutPass = returnAttendantSchema.omit({
-//   password: true,
-// });
+export const hotelUpdateSchema = hotelReturnSchema.partial();
