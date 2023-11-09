@@ -9,7 +9,8 @@ export const createAttendantController = async (
   request: Request,
   response: Response
 ) => {
-  const attedantNew = await createAttendantService(request.body);
+  const managerId = response.locals.userId;
+  const attedantNew = await createAttendantService(request.body, managerId);
 
   return response.json(attedantNew).status(201);
 };

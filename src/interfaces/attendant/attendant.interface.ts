@@ -13,3 +13,7 @@ export type tAttendantReturnWithoutPass = z.infer<
   typeof returnAttendantSchemaWithoutPass
 >;
 export type tAttendantReqLogin = Omit<tAttendantReq, "idManager">;
+export type tAttendantReturnWithoutPassManager = Omit<
+  tAttendantReturnWithoutPass,
+  "manager.password"
+>;

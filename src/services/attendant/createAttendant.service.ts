@@ -1,19 +1,22 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Attendant, Manager } from "../../entities";
-import { tAttendantReq, tAttendantReturnWithoutPass } from "../../interfaces";
+import {
+  tAttendantReq,
+  tAttendantReturnWithoutPass,
+  tAttendantReturnWithoutPassManager,
+} from "../../interfaces";
 import { returnAttendantSchemaWithoutPass } from "../../schemas";
 
 export const createAttendantService = async (
-  attendantData: tAttendantReq
-): Promise<tAttendantReturnWithoutPass> => {
+  attendantData: tAttendantReq,
+  managerId: string
+): Promise<tAttendantReturnWithoutPassManager> => {
   const attendantRepository: Repository<Attendant> =
     AppDataSource.getRepository(Attendant);
 
   const managerRepository: Repository<Manager> =
     AppDataSource.getRepository(Manager);
-
-  const { idManager: managerId, ...attendantRequest } = attendantData;
 
   const findManager = await managerRepository.findOne({
     where: {
@@ -22,7 +25,7 @@ export const createAttendantService = async (
   });
 
   const newAttendant = attendantRepository.create({
-    ...attendantRequest,
+    ...attendantData,
     manager: findManager!,
   });
 

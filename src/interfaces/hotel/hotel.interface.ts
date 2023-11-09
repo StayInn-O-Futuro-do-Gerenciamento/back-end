@@ -1,9 +1,16 @@
 import { z } from "zod";
-import { hotelCreateSchema } from "../../schemas/hotel/createHotel.schema";
+import {
+  hotelCreateSchema,
+  hotelReturnAllSchema,
+  hotelReturnSchema,
+  hotelUpdateSchema,
+} from "../../schemas/hotel/createHotel.schema";
 
 export type tHotelCreate = z.infer<typeof hotelCreateSchema>;
+export type tHotelReturn = z.infer<typeof hotelReturnSchema>;
+export type tHotelUpdate = z.infer<typeof hotelUpdateSchema>;
+export type tHotelAllReturn = z.infer<typeof hotelReturnAllSchema>;
 
-// export type tAttendantUpdateReq = z.infer<typeof attendantUpdateSchema>;
 // export type tAttendantReturn = z.infer<typeof returnAttendantSchema>;
 // export type tAttendantReturnWithoutPass = z.infer<
 //   typeof returnAttendantSchemaWithoutPass

@@ -1,10 +1,19 @@
 import { Router } from "express";
-import { createHotelController } from "../../controllers";
+import {
+  createHotelController,
+  updateHotelController,
+} from "../../controllers";
 import { validateTokenMiddleware } from "../../middlewares/verify/verifyTokenIsValid";
+import {
+  deleteHotelController,
+  listHotelByIdController,
+  listHotelController,
+} from "../../controllers/hotel/hotel.controller";
 
 export const hotelRouter: Router = Router();
 
 hotelRouter.post("", validateTokenMiddleware, createHotelController);
-hotelRouter.get("");
-hotelRouter.patch("/:id");
-hotelRouter.delete("/:id");
+hotelRouter.get("/:id", listHotelByIdController);
+hotelRouter.get("", listHotelController);
+hotelRouter.patch("/:id", validateTokenMiddleware, updateHotelController);
+hotelRouter.delete("/:id", validateTokenMiddleware, deleteHotelController);

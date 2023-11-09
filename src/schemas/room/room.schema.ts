@@ -7,22 +7,22 @@ export const typeRoomCreateSchema = z.object({
   price: z.number(),
   personCount: z.number(),
   rate: z.string(),
-  quantity: z.number(),
+  roomTypeQuantity: z.number(),
 });
 
 export const returnTypeRoomCreateSchema = typeRoomCreateSchema.extend({
-  id: z.number().int(),
+  id: z.string(),
 });
 
 export const roomCreateSchema = z.object({
-  numberRoom: z.number(),
   status: z.string(),
-  secretKey: z.string(),
-  floor: z.string(),
   typeRoom: typeRoomCreateSchema,
 });
 
 export const returnRoomCreateSchema = roomCreateSchema.extend({
-  id: z.number().int(),
+  id: z.string(),
+  numberRoom: z.number(),
+  secretKey: z.string(),
+  floor: z.string(),
   typeRoom: returnTypeRoomCreateSchema,
 });

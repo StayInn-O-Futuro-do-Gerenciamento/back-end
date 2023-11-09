@@ -3,6 +3,7 @@ import {
   tAttendantReqLogin,
   tAttendantReturn,
   tAttendantReturnWithoutPass,
+  tAttendantReturnWithoutPassManager,
   tAttendantUpdateReq,
 } from "./attendant/attendant.interface";
 
@@ -19,6 +20,7 @@ import {
   tRoomReturn,
   tTypeRoomRequest,
   tTypeRoomReturn,
+  tReturnArrayRoom,
 } from "./room/room.interface";
 
 export {
@@ -32,8 +34,10 @@ export {
   tManagerUpdate,
   tManagerUpdateRequest,
   tAttendantReqLogin,
+  tAttendantReturnWithoutPassManager,
   tRoomRequest,
   tRoomReturn,
   tTypeRoomRequest,
   tTypeRoomReturn,
+  tReturnArrayRoom,
 };
