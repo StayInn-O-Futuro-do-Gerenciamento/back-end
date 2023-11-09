@@ -1,10 +1,14 @@
 import { z } from "zod";
-import { addressCreateSchema } from "../address/address.schemas";
+import {
+  addressCreateSchema,
+  addressReturnSchema,
+} from "../address/address.schemas";
 
 export const guestCreateSchema = z.object({
   name: z.string().max(50).min(3),
   rg: z.number().max(10).min(7),
   cpf: z.number().max(11),
+  passport: z.number().max(6),
   nationality: z.string().max(15).min(3),
   phoneNumbers: z.array(z.string()),
   emergencyContacts: z.array(
@@ -23,6 +27,7 @@ export const returnGuestSchema = z.object({
   name: z.string(),
   rg: z.number(),
   cpf: z.number(),
+  passport: z.number(),
   nationality: z.string(),
   phoneNumbers: z.array(z.string().max(9)),
   emergencyContacts: z.array(
@@ -31,7 +36,7 @@ export const returnGuestSchema = z.object({
       phoneNumber: z.string().max(9),
     })
   ),
-  address: addressCreateSchema.extend({
-    id: z.string(),
-  }),
+  address: addressReturnSchema,
 });
+
+export const guestReturnAllSchema = z.array(returnGuestSchema);

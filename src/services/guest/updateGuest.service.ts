@@ -6,6 +6,7 @@ import {
 import { Guest } from "../../entities";
 import { AppDataSource } from "../../data-source";
 import { returnGuestSchema } from "../../schemas";
+import { AppError } from "../../errors";
 
 export const updateGuestService = async (
   guestData: tGuestUpdateReq,
@@ -13,25 +14,26 @@ export const updateGuestService = async (
 ): Promise<tGuestUpdate> => {
   const guestRepository: Repository<Guest> = AppDataSource.getRepository(Guest);
 
-  const oldData = await guestRepository.findOneBy({
-    id: updateId,
+  const oldData = await guestRepository.findOne({
+    where: {
+      id: updateId,
+    },
+    relations: {
+      address: true,
+    },
   });
 
-  const guest = guestRepository.create({
-    ...oldData,
-    name: guestData.name || oldData!.name,
-    rg: guestData.rg || oldData!.rg,
-    cpf: guestData.cpf || oldData!.cpf,
-    nationality: guestData.nationality || oldData!.nationality,
-    phoneNumbers: guestData.phoneNumbers || oldData!.phoneNumbers,
-    emergencyContacts:
-      guestData.emergencyContacts || oldData!.emergencyContacts,
-    address: guestData.address || oldData!.address,
+  if (!oldData) {
+    throw new AppError("Guest not found", 404);
+  }
+
+  Object.assign(oldData, guestData, {
+    address: { ...oldData.address },
   });
 
-  await guestRepository.save(guest);
+  await guestRepository.save(oldData);
 
-  const newGuest = returnGuestSchema.parse(guest);
+  const newGuest = returnGuestSchema.parse(oldData);
 
   return newGuest;
 };

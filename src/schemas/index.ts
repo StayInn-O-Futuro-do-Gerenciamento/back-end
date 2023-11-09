@@ -7,6 +7,7 @@ import {
 } from "./attendant/attendant.schemas";
 import {
   guestCreateSchema,
+  guestReturnAllSchema,
   guestUpdateSchema,
   returnGuestSchema,
 } from "./guest/guest.schemas";
@@ -41,4 +42,5 @@ export {
   typeRoomCreateSchema,
   returnRoomCreateSchema,
   returnTypeRoomCreateSchema,
+  guestReturnAllSchema,
 };

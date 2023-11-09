@@ -7,3 +7,7 @@ export const addressCreateSchema = z.object({
   state: z.string().max(10).min(2),
   zipCode: z.string().max(10),
 });
+
+export const addressReturnSchema = addressCreateSchema.extend({
+  id: z.string(),
+});

@@ -4,6 +4,7 @@ import { loginAttendantService } from "./attendant/loginAttendant.service";
 import { updateAttendantService } from "./attendant/updateAttendant.service";
 import { createGuestService } from "./guest/createGuest.service";
 import { deleteGuestService } from "./guest/deleteGuest.service";
+import { listAllGuestService } from "./guest/listAllGuest.service";
 import { updateGuestService } from "./guest/updateGuest.service";
 import { createManagerService } from "./manager/createManager.service";
 import { deleteManagerService } from "./manager/deleteManager.service";
@@ -24,4 +25,5 @@ export {
   updateGuestService,
   deleteGuestService,
   createRoomService,
+  listAllGuestService,
 };
