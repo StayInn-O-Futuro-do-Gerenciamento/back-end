@@ -16,6 +16,8 @@ import {
   typeRoomCreateSchema,
   returnRoomCreateSchema,
   returnTypeRoomCreateSchema,
+  updateStatusRoomRequest,
+  returnUpdateStatusRoomRequest,
 } from "./room/room.schema";
 
 export {
@@ -31,4 +33,6 @@ export {
   typeRoomCreateSchema,
   returnRoomCreateSchema,
   returnTypeRoomCreateSchema,
+  updateStatusRoomRequest,
+  returnUpdateStatusRoomRequest,
 };

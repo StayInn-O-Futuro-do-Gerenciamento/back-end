@@ -43,7 +43,6 @@ import {
 } from "./room/room.controller";
 import {
   createTypeRoomController,
-  deleteTypeRoomController,
   listTypeRoomController,
   updateTypeRoomController,
 } from "./typeRoom/typeRoom.controller";
@@ -79,7 +78,6 @@ export {
   listRoomByIdController,
   updateRoomController,
   createTypeRoomController,
-  deleteTypeRoomController,
   listTypeRoomController,
   updateTypeRoomController,
 };

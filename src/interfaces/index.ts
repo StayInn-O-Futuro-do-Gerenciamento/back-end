@@ -21,6 +21,8 @@ import {
   tTypeRoomRequest,
   tTypeRoomReturn,
   tReturnArrayRoom,
+  tUpdateTypeRoomRequest,
+  tReturnUpdateTypeRoom,
 } from "./room/room.interface";
 
 export {
@@ -40,4 +42,6 @@ export {
   tTypeRoomRequest,
   tTypeRoomReturn,
   tReturnArrayRoom,
+  tUpdateTypeRoomRequest,
+  tReturnUpdateTypeRoom,
 };
