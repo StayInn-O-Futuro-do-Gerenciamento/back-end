@@ -10,6 +10,6 @@ import { validateTokenMiddleware } from "../../middlewares";
 export const guestRouter: Router = Router();
 
 guestRouter.post("", validateTokenMiddleware, createGuestController);
-guestRouter.get("", getGuestController);
-guestRouter.patch("/:id", updateGuestController);
+guestRouter.get("", validateTokenMiddleware, getGuestController);
+guestRouter.patch("/:id", validateTokenMiddleware, updateGuestController);
 guestRouter.delete("/:id", validateTokenMiddleware, deleteGuestController);
