@@ -31,12 +31,6 @@ export const updateGuestService = async (
     address: { ...oldData.address },
   });
 
-  oldData.passport = Number(oldData.passport);
-  oldData.cpf = Number(oldData.cpf);
-  oldData.rg = Number(oldData.rg);
-
-  console.log(oldData);
-
   await guestRepository.save(oldData);
 
   const newGuest = returnGuestSchema.parse(oldData);
