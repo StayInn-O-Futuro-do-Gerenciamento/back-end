@@ -168,6 +168,7 @@ export const createRoomService = async (
     room.secretKey = generateSecretKey();
     room.floor = `Andar ${andar}`;
     room.typeRoom = newRoom;
+    room.hotel = hotel[0];
 
     generatedRooms.push(room);
 
