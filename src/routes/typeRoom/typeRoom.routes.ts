@@ -9,4 +9,4 @@ export const typeRoomRouter: Router = Router();
 
 typeRoomRouter.get("", validateTokenMiddleware, listTypeRoomController);
 
-typeRoomRouter.patch("", validateTokenMiddleware, updateTypeRoomController);
+typeRoomRouter.patch("/:id", validateTokenMiddleware, updateTypeRoomController);

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { hotelReturnSchema } from "../hotel/createHotel.schema";
 
 export const typeRoomCreateSchema = z.object({
   name: z.string(),
@@ -17,6 +18,7 @@ export const returnTypeRoomCreateSchema = typeRoomCreateSchema.extend({
 export const roomCreateSchema = z.object({
   status: z.string(),
   typeRoom: typeRoomCreateSchema,
+  hotel: hotelReturnSchema,
 });
 
 export const returnRoomCreateSchema = roomCreateSchema.extend({
@@ -33,7 +35,7 @@ export const updateStatusRoomRequest = z.object({
 
 export const returnUpdateStatusRoomRequest = updateStatusRoomRequest.extend({
   id: z.string(),
-  numberRoom: z.number(),
+  roomNumber: z.string(),
   secretKey: z.string(),
   floor: z.string(),
 });

@@ -40,7 +40,7 @@ export class Room {
   hotel: Hotel;
 
   @OneToMany(() => Reservations, (reservation) => reservation.rooms)
-  reservation: Reservations;
+  reservation: Reservations[];
 
   @ManyToOne(() => TypeRoom, (typeRoom) => typeRoom.rooms)
   @JoinColumn()

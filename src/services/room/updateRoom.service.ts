@@ -31,7 +31,7 @@ export const updateRoomService = async (
 
   await roomRepository.save(newRoom);
 
-  const room = returnUpdateStatusRoomRequest.parse(oldData);
+  const room = returnUpdateStatusRoomRequest.parse(newRoom);
 
   return room;
 };

@@ -45,6 +45,6 @@ export {
   tTypeRoomReturn,
   tReturnArrayRoom,
   tGuestReturnAllSchema,
-  tReturnUpdateTypeRoom,
   tUpdateTypeRoomRequest,
+  tReturnUpdateTypeRoom,
 };

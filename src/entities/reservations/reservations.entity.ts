@@ -47,5 +47,5 @@ export class Reservations {
 
   @ManyToOne(() => Room, (room) => room.reservation)
   @JoinColumn()
-  rooms: Room;
+  rooms: Room[];
 }
