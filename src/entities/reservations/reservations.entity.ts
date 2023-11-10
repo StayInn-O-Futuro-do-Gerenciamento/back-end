@@ -20,10 +20,10 @@ export class Reservations {
   id: string;
 
   @Column({ type: "date" })
-  checkin: Date;
+  checkin: Date | string;
 
   @Column({ type: "date" })
-  checkout: Date;
+  checkout: Date | string;
 
   @Column({ type: "int" })
   numberAdults: number;
@@ -31,11 +31,8 @@ export class Reservations {
   @Column({ type: "int" })
   numberKids: number;
 
-  @Column({ type: "int" })
-  numberRoom: number;
-
-  @Column({ length: 80, type: "varchar" })
-  feedBack: string;
+  @Column({ type: "int", enum: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 }, default: 5 })
+  feedBack: number;
 
   @ManyToOne(() => Attendant, (attendant) => attendant.reservations)
   @JoinColumn()
@@ -43,9 +40,9 @@ export class Reservations {
 
   @ManyToMany(() => Guest, (guest) => guest.reservations)
   @JoinTable()
-  guests: Guest[];
+  guests: Guest;
 
   @ManyToOne(() => Room, (room) => room.reservation)
   @JoinColumn()
-  rooms: Room[];
+  rooms: Room;
 }

@@ -23,7 +23,9 @@ export const updateAttendantService = async (
     },
   });
 
-  const attendant = Object.assign(oldData!, attendantData);
+  const attendant = Object.assign(oldData!, attendantData, {
+    ...oldData?.manager,
+  });
 
   await attendantRepository.save(attendant);
 

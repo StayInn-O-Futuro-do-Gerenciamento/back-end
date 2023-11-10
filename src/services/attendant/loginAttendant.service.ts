@@ -18,7 +18,6 @@ export const loginAttendantService = async (
   const attendant: Attendant | null = await attendantRepository.findOneBy({
     name: name,
   });
-  console.log(attendant);
 
   if (!attendant) {
     throw new AppError("Invalid credentials", 401);
@@ -30,10 +29,16 @@ export const loginAttendantService = async (
     throw new AppError("Invalid credentials", 401);
   }
 
-  const token: string = Jwt.sign({}, process.env.SECRET_KEY!, {
-    expiresIn: "24h",
-    subject: String(attendant.id),
-  });
+  const token: string = Jwt.sign(
+    {
+      type: attendant.type,
+    },
+    process.env.SECRET_KEY!,
+    {
+      expiresIn: "24h",
+      subject: attendant.id,
+    }
+  );
 
   return { token: token };
 };

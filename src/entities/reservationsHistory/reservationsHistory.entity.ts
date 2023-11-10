@@ -25,4 +25,7 @@ export class ReservationsHistory {
 
   @Column()
   id_room: string;
+
+  @Column()
+  id_reservation: string;
 }

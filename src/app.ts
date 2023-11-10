@@ -5,6 +5,7 @@ import {
   guestRouter,
   hotelRouter,
   managerRouter,
+  reservationsRouter,
   roomRouter,
   typeRoomRouter,
 } from "./routes";
@@ -24,6 +25,7 @@ app.use("/hotel", hotelRouter);
 app.use("/room", roomRouter);
 app.use("/guest", guestRouter);
 app.use("/typeRoom", typeRoomRouter);
+app.use("/reservation", reservationsRouter);
 
 app.use(handleErrors);
 export default app;

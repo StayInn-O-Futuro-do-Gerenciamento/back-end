@@ -7,6 +7,12 @@ import {
   tAttendantUpdateReq,
 } from "./attendant/attendant.interface";
 import { tGuestReturnAllSchema, tGuestUpdate } from "./guest/guest.interface";
+import {
+  tHotelCreate,
+  tHotelReturn,
+  tHotelUpdate,
+  tHotelAllReturn,
+} from "./hotel/hotel.interface";
 
 import {
   tManagerRequest,
@@ -15,6 +21,10 @@ import {
   tManagerUpdate,
   tManagerUpdateRequest,
 } from "./manager/manager.interface";
+import {
+  tReservationReq,
+  tReservationReturn,
+} from "./reservation/reservation.schema";
 
 import {
   tRoomRequest,
@@ -47,4 +57,10 @@ export {
   tGuestReturnAllSchema,
   tUpdateTypeRoomRequest,
   tReturnUpdateTypeRoom,
+  tHotelCreate,
+  tHotelReturn,
+  tHotelUpdate,
+  tHotelAllReturn,
+  tReservationReq,
+  tReservationReturn,
 };
