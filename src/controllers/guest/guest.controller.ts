@@ -18,7 +18,7 @@ export const createGuestController = async (
 export const getGuestController = async (
   request: Request,
   response: Response
-) => {
+): Promise<Response> => {
   const listAllGuest = await listAllGuestService();
 
   return response.status(200).json(listAllGuest);
