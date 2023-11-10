@@ -1,9 +1,16 @@
+import { addressCreateSchema } from "./address/address.schemas";
 import {
   attendantCreateSchema,
   attendantUpdateSchema,
   returnAttendantSchema,
   returnAttendantSchemaWithoutPass,
 } from "./attendant/attendant.schemas";
+import {
+  guestCreateSchema,
+  guestReturnAllSchema,
+  guestUpdateSchema,
+  returnGuestSchema,
+} from "./guest/guest.schemas";
 import {
   managerCreateSchema,
   managerUpdateSchema,
@@ -29,10 +36,15 @@ export {
   attendantUpdateSchema,
   returnAttendantSchema,
   returnAttendantSchemaWithoutPass,
+  guestCreateSchema,
+  addressCreateSchema,
+  guestUpdateSchema,
+  returnGuestSchema,
   roomCreateSchema,
   typeRoomCreateSchema,
   returnRoomCreateSchema,
   returnTypeRoomCreateSchema,
   updateStatusRoomRequest,
   returnUpdateStatusRoomRequest,
+  guestReturnAllSchema,
 };

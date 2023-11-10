@@ -1,14 +1,15 @@
 import "express-async-errors";
-import express, { Application } from "express";
 import cors from "cors";
 import {
   attendantRouter,
+  guestRouter,
   hotelRouter,
   managerRouter,
   roomRouter,
   typeRoomRouter,
 } from "./routes";
 import { handleErrors } from "./errors";
+import express, { Application } from "express";
 
 const app: Application = express();
 
@@ -21,6 +22,7 @@ app.use("/manager", managerRouter);
 app.use("/attendant", attendantRouter);
 app.use("/hotel", hotelRouter);
 app.use("/room", roomRouter);
+app.use("/guest", guestRouter);
 app.use("/typeRoom", typeRoomRouter);
 
 app.use(handleErrors);
