@@ -31,10 +31,10 @@ export class Guest {
   @Column({ length: 15, type: "varchar" })
   nationality: string;
 
-  @Column({ array: true, length: 9, type: "varchar" })
+  @Column({ array: true, type: "varchar" })
   phoneNumbers: string[];
 
-  @Column({ array: true, length: 9, type: "varchar" })
+  @Column({ array: true, type: "varchar" })
   emergencyContacts: { name: string; phoneNumber: string }[];
 
   @OneToOne(() => Address, (address) => address.guest)

@@ -6,6 +6,7 @@ import {
   tAttendantReturnWithoutPassManager,
   tAttendantUpdateReq,
 } from "./attendant/attendant.interface";
+import { tGuestReturnAllSchema, tGuestUpdate } from "./guest/guest.interface";
 
 import {
   tManagerRequest,
@@ -35,9 +36,11 @@ export {
   tManagerUpdateRequest,
   tAttendantReqLogin,
   tAttendantReturnWithoutPassManager,
+  tGuestUpdate,
   tRoomRequest,
   tRoomReturn,
   tTypeRoomRequest,
   tTypeRoomReturn,
   tReturnArrayRoom,
+  tGuestReturnAllSchema,
 };
