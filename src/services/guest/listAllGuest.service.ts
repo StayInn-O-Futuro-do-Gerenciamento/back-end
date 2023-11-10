@@ -13,20 +13,15 @@ export const listAllGuestService = async (): Promise<tGuestReturnAllSchema> => {
     },
   });
 
-  console.log(findGuest);
-
-  const context: any[] = [];
-
   findGuest.forEach((guest: any) => {
+    const contacts: tGuestReturnAllSchema = [];
     guest.emergencyContacts = guest.emergencyContacts.forEach((elem: any) => {
-      context.push(elem);
-      console.log(elem);
+      let obj = JSON.parse(elem);
+      contacts.push(obj);
     });
 
-    guest.emergencyContacts = context;
+    guest.emergencyContacts = contacts;
   });
-
-  console.log(findGuest);
 
   const guests: tGuestReturnAllSchema = guestReturnAllSchema.parse(findGuest);
 

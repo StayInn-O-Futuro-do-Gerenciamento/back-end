@@ -20,13 +20,13 @@ export class Guest {
   name: string;
 
   @Column({ length: 10, type: "varchar" })
-  rg: number;
+  rg: string;
 
   @Column({ length: 11, type: "varchar" })
-  cpf: number;
+  cpf: string;
 
   @Column({ length: 6, type: "varchar", nullable: true })
-  passport: number | null;
+  passport: string | null;
 
   @Column({ length: 15, type: "varchar" })
   nationality: string;
