@@ -39,9 +39,12 @@ export {
   tAttendantReqLogin,
   tAttendantReturnWithoutPassManager,
   tGuestUpdate,
+  tGuestReturnAllSchema,
   tRoomRequest,
   tRoomReturn,
   tTypeRoomRequest,
   tTypeRoomReturn,
   tReturnArrayRoom,
+  tUpdateTypeRoomRequest,
+  tReturnUpdateTypeRoom,
 };

@@ -33,7 +33,7 @@ export const updateStatusRoomRequest = z.object({
 
 export const returnUpdateStatusRoomRequest = updateStatusRoomRequest.extend({
   id: z.string(),
-  numberRoom: z.number(),
+  roomNumber: z.string(),
   secretKey: z.string(),
   floor: z.string(),
 });
