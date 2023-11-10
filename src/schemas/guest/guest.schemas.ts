@@ -6,9 +6,9 @@ import {
 
 export const guestCreateSchema = z.object({
   name: z.string().max(50).min(3),
-  rg: z.number().max(10).min(7),
-  cpf: z.number().max(11),
-  passport: z.number().max(6),
+  rg: z.string().max(10).min(7),
+  cpf: z.string().max(11),
+  passport: z.string().max(6),
   nationality: z.string().max(15).min(3),
   phoneNumbers: z.array(z.string()),
   emergencyContacts: z.array(
@@ -25,9 +25,9 @@ export const guestUpdateSchema = guestCreateSchema.partial();
 export const returnGuestSchema = z.object({
   id: z.string(),
   name: z.string(),
-  rg: z.number(),
-  cpf: z.number(),
-  passport: z.number(),
+  rg: z.string(),
+  cpf: z.string(),
+  passport: z.string(),
   nationality: z.string(),
   phoneNumbers: z.array(z.string().max(9)),
   emergencyContacts: z.array(
