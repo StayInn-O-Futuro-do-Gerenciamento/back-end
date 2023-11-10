@@ -26,3 +26,14 @@ export const returnRoomCreateSchema = roomCreateSchema.extend({
   floor: z.string(),
   typeRoom: returnTypeRoomCreateSchema,
 });
+
+export const updateStatusRoomRequest = z.object({
+  status: z.string(),
+});
+
+export const returnUpdateStatusRoomRequest = updateStatusRoomRequest.extend({
+  id: z.string(),
+  numberRoom: z.number(),
+  secretKey: z.string(),
+  floor: z.string(),
+});

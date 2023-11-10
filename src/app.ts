@@ -6,6 +6,7 @@ import {
   hotelRouter,
   managerRouter,
   roomRouter,
+  typeRoomRouter,
 } from "./routes";
 import { handleErrors } from "./errors";
 import express, { Application } from "express";
@@ -22,6 +23,7 @@ app.use("/attendant", attendantRouter);
 app.use("/hotel", hotelRouter);
 app.use("/room", roomRouter);
 app.use("/guest", guestRouter);
+app.use("/typeRoom", typeRoomRouter);
 
 app.use(handleErrors);
 export default app;

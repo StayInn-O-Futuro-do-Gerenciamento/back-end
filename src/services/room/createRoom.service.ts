@@ -118,8 +118,22 @@ export const createRoomService = async (
   } = roomData.typeRoom;
 
   let existingTypeRoom = await typeRoomRepository.findOne({ where: { name } });
+  let findRooms = await typeRoomRepository.find();
+
+  let roomsQuantityTotal = findRooms.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.roomTypeQuantity,
+    0
+  );
 
   let newRoom;
+
+  if (roomsQuantityTotal + roomTypeQuantity > numberRoomsTotal) {
+    throw new AppError(
+      `A capacidade máxima de quartos (${numberRoomsTotal}) foi atingida. Restam ${
+        numberRoomsTotal - roomsQuantityTotal
+      } quartos disponíveis.`
+    );
+  }
 
   if (!existingTypeRoom) {
     const roomType = roomData.typeRoom;
