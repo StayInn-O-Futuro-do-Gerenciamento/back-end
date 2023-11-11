@@ -21,6 +21,7 @@ export const validateTokenMiddleware = async (
       throw new AppError(error.message, 401);
     }
     res.locals.userId = decoded.sub;
+    res.locals.type = decoded.type;
   });
 
   return next();

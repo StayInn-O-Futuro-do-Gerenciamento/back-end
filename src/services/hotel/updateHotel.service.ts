@@ -2,13 +2,10 @@ import { object } from "zod";
 import { AppDataSource } from "../../data-source";
 import { Hotel } from "../../entities";
 import { AppError } from "../../errors";
-import {
-  tHotelCreate,
-  tHotelReturn,
-  tHotelUpdate,
-} from "../../interfaces/hotel/hotel.interface";
-import { hotelReturnSchema } from "../../schemas/hotel/createHotel.schema";
+
 import { Repository } from "typeorm";
+import { hotelReturnSchema } from "../../schemas";
+import { tHotelReturn, tHotelUpdate } from "../../interfaces";
 
 export const updateHotelService = async (
   data: tHotelUpdate,

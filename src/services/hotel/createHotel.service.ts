@@ -1,15 +1,9 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Hotel, Manager } from "../../entities";
-import {
-  tHotelCreate,
-  tHotelReturn,
-} from "../../interfaces/hotel/hotel.interface";
-import {
-  hotelCreateSchema,
-  hotelReturnSchema,
-} from "../../schemas/hotel/createHotel.schema";
 import { AppError } from "../../errors";
+import { hotelReturnSchema } from "../../schemas";
+import { tHotelCreate, tHotelReturn } from "../../interfaces";
 
 export const createHotelService = async (
   hotelData: tHotelCreate,

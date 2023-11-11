@@ -12,11 +12,23 @@ import {
   returnGuestSchema,
 } from "./guest/guest.schemas";
 import {
+  hotelCreateSchema,
+  hotelReturnSchema,
+  hotelReturnAllSchema,
+  hotelUpdateSchema,
+} from "./hotel/createHotel.schema";
+import {
   managerCreateSchema,
   managerUpdateSchema,
   managerReturnCreteSchema,
   managerReturnCreteSchemaWhithoutPass,
 } from "./manager/manager.schema";
+import {
+  reservationCreateSchema,
+  reservationReturnSchema,
+  reservationUpdateSchema,
+  reservationUpdateSchemaReturn,
+} from "./reservation/reservation.schema";
 
 import {
   roomCreateSchema,
@@ -47,4 +59,12 @@ export {
   updateStatusRoomRequest,
   returnUpdateStatusRoomRequest,
   guestReturnAllSchema,
+  hotelCreateSchema,
+  hotelReturnSchema,
+  hotelReturnAllSchema,
+  hotelUpdateSchema,
+  reservationCreateSchema,
+  reservationReturnSchema,
+  reservationUpdateSchema,
+  reservationUpdateSchemaReturn,
 };

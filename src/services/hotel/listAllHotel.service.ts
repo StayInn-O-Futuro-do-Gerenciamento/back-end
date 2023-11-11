@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Hotel } from "../../entities";
-import { tHotelAllReturn } from "../../interfaces/hotel/hotel.interface";
-import { hotelReturnAllSchema } from "../../schemas/hotel/createHotel.schema";
+import { hotelReturnAllSchema } from "../../schemas";
+import { tHotelAllReturn } from "../../interfaces";
 
 export const listAllHotelService = async (): Promise<tHotelAllReturn> => {
   const hotelRepo: Repository<Hotel> = AppDataSource.getRepository(Hotel);

@@ -6,8 +6,6 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { array, nullable } from "zod";
-import { Reservations } from "../reservations/reservations.entity";
 
 @Entity()
 export class ReservationsHistory {
@@ -15,14 +13,26 @@ export class ReservationsHistory {
   id: string;
 
   @Column({ type: "date" })
-  checkin: Date;
+  checkin: Date | string;
 
   @Column({ type: "date" })
-  checkout: Date;
+  checkout: Date | string;
 
-  @Column()
-  id_guest: string;
+  @Column({ type: "int" })
+  numberAdults: number;
 
-  @Column()
-  id_room: string;
+  @Column({ type: "int" })
+  numberKids: number;
+
+  @Column({ type: "int", enum: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 }, default: 5 })
+  feedBack: number;
+
+  @Column({ type: "varchar" })
+  guestId: string;
+
+  @Column({ type: "varchar" })
+  roomID: string;
+
+  @Column({ type: "varchar" })
+  attendantId: string;
 }

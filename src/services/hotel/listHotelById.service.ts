@@ -1,9 +1,9 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Hotel } from "../../entities";
-import { tHotelReturn } from "../../interfaces/hotel/hotel.interface";
 import { AppError } from "../../errors";
-import { hotelReturnSchema } from "../../schemas/hotel/createHotel.schema";
+import { hotelReturnSchema } from "../../schemas";
+import { tHotelReturn } from "../../interfaces";
 
 export const listHotelByIdService = async (
   id: string

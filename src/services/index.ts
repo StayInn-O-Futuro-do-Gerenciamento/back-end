@@ -6,10 +6,22 @@ import { createGuestService } from "./guest/createGuest.service";
 import { deleteGuestService } from "./guest/deleteGuest.service";
 import { listAllGuestService } from "./guest/listAllGuest.service";
 import { updateGuestService } from "./guest/updateGuest.service";
+import { createHotelService } from "./hotel/createHotel.service";
+import { deleteHotelService } from "./hotel/deleteHotel.service";
+import { listAllHotelService } from "./hotel/listAllHotel.service";
+import { listHotelByIdService } from "./hotel/listHotelById.service";
+import { updateHotelService } from "./hotel/updateHotel.service";
 import { createManagerService } from "./manager/createManager.service";
 import { deleteManagerService } from "./manager/deleteManager.service";
 import { loginManagerService } from "./manager/loginManager.service";
 import { updateManagerService } from "./manager/updateManager.service";
+import { createReservationService } from "./reservation/createReservation.service";
+import { deleteReservationService } from "./reservation/deleteReservation.service";
+import { listAllReservatonsService } from "./reservation/listAllReservation.service";
+import { listReservationByIdService } from "./reservation/listReservationById.service";
+import { updateReservationService } from "./reservation/updateReservation.service";
+import { listAllReservationsHistoryService } from "./reservationsHistory/listAllReservationsHistory.service";
+import { listReservationsHistoryByFilterService } from "./reservationsHistory/listReservationHistoryByFilter.service";
 import { createRoomService } from "./room/createRoom.service";
 import { listRoomService } from "./room/listRoom.service";
 import { updateRoomService } from "./room/updateRoom.service";
@@ -34,4 +46,16 @@ export {
   listTypeRoomService,
   updateTypeRoomService,
   listAllGuestService,
+  createHotelService,
+  deleteHotelService,
+  listAllHotelService,
+  listHotelByIdService,
+  updateHotelService,
+  createReservationService,
+  updateReservationService,
+  deleteReservationService,
+  listAllReservatonsService,
+  listReservationByIdService,
+  listAllReservationsHistoryService,
+  listReservationsHistoryByFilterService,
 };

@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
-import { createHotelService } from "../../services/hotel/createHotelService";
-import { updateHotelService } from "../../services/hotel/updateHotelService";
-import { listHotelByIdService } from "../../services/hotel/listHotelByIdService";
-import { listAllHotelService } from "../../services/hotel/listAllHotelService";
-import { deleteHotelService } from "../../services/hotel/deleteHotelService";
+import {
+  createHotelService,
+  updateHotelService,
+  listHotelByIdService,
+  listAllHotelService,
+  deleteHotelService,
+} from "../../services";
 
 export const createHotelController = async (
   request: Request,
