@@ -7,8 +7,8 @@ import {
   Room,
   ReservationsHistory,
 } from "../../entities";
-import { tReservationReq, tReservationReturn } from "../../interfaces";
-import { reservationReturnSchema } from "../../schemas";
+import { tReservationReq } from "../../interfaces";
+
 
 export const createReservationService = async (
   reservationData: tReservationReq,
@@ -23,6 +23,9 @@ export const createReservationService = async (
   const guestRepository: Repository<Guest> = AppDataSource.getRepository(Guest);
 
   const roomRepository: Repository<Room> = AppDataSource.getRepository(Room);
+
+  const reservationsHistoryRepository: Repository<ReservationsHistory> =
+    AppDataSource.getRepository(ReservationsHistory);
 
   const {
     room: roomId,
@@ -66,6 +69,15 @@ export const createReservationService = async (
   } as DeepPartial<Reservations>);
 
   await reservationsRepository.save(newReservation);
+
+  const history = reservationsHistoryRepository.create({
+    checkin: newReservation.checkin,
+    checkout: newReservation.checkout,
+    id_guest: findGuest!.id,
+    id_room: findRoom!.id,
+    id_reservation: newReservation.id,
+  });
+  await reservationsHistoryRepository.save(history);
 
   const responseReservation: any = { ...newReservation };
   delete responseReservation.attendant.password;

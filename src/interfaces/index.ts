@@ -24,7 +24,9 @@ import {
 import {
   tReservationReq,
   tReservationReturn,
-} from "./reservation/reservation.schema";
+  tReservationUpdateReq,
+  tReservationUpdateReturn,
+} from "./reservation/reservation.interface";
 
 import {
   tRoomRequest,
@@ -63,4 +65,6 @@ export {
   tHotelAllReturn,
   tReservationReq,
   tReservationReturn,
+  tReservationUpdateReq,
+  tReservationUpdateReturn,
 };

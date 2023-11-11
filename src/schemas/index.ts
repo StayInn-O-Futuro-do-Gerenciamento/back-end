@@ -26,6 +26,8 @@ import {
 import {
   reservationCreateSchema,
   reservationReturnSchema,
+  reservationUpdateSchema,
+  reservationUpdateSchemaReturn,
 } from "./reservation/reservation.schema";
 
 import {
@@ -63,4 +65,6 @@ export {
   hotelUpdateSchema,
   reservationCreateSchema,
   reservationReturnSchema,
+  reservationUpdateSchema,
+  reservationUpdateSchemaReturn,
 };

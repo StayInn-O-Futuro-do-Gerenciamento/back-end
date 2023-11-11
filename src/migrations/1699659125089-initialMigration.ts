@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class InitialMigration1699640044163 implements MigrationInterface {
-    name = 'InitialMigration1699640044163'
+export class InitialMigration1699659125089 implements MigrationInterface {
+    name = 'InitialMigration1699659125089'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "attendant" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(50) NOT NULL, "password" character varying NOT NULL, "type" character varying NOT NULL DEFAULT 'Attendant', "managerId" uuid, CONSTRAINT "PK_0f816ac9013a3351bfb034bdc2a" PRIMARY KEY ("id"))`);
@@ -15,7 +15,7 @@ export class InitialMigration1699640044163 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE "reservations" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "checkin" date NOT NULL, "checkout" date NOT NULL, "numberAdults" integer NOT NULL, "numberKids" integer NOT NULL, "feedBack" integer NOT NULL DEFAULT '5', "attendantId" uuid, "roomsId" uuid, CONSTRAINT "PK_da95cef71b617ac35dc5bcda243" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "guest" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(50) NOT NULL, "rg" character varying(10) NOT NULL, "cpf" character varying(11) NOT NULL, "passport" character varying(6), "nationality" character varying(15) NOT NULL, "phoneNumbers" character varying array NOT NULL, "emergencyContacts" character varying array NOT NULL, "addressId" uuid, CONSTRAINT "REL_6269845e556a23fe5eabac5a33" UNIQUE ("addressId"), CONSTRAINT "PK_57689d19445de01737dbc458857" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "address" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "street" character varying(50) NOT NULL, "number" character varying(10) NOT NULL, "city" character varying(10) NOT NULL, "state" character varying(10) NOT NULL, "zipCode" character varying(10) NOT NULL, CONSTRAINT "PK_d92de1f82754668b5f5f5dd4fd5" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "reservations_history" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "checkin" date NOT NULL, "checkout" date NOT NULL, "id_guest" character varying NOT NULL, "id_room" character varying NOT NULL, CONSTRAINT "PK_f4fe620edbaa0e8a1aa16133345" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "reservations_history" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "checkin" date NOT NULL, "checkout" date NOT NULL, "id_guest" character varying NOT NULL, "id_room" character varying NOT NULL, "id_reservation" character varying NOT NULL, CONSTRAINT "PK_f4fe620edbaa0e8a1aa16133345" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "reservations_guests_guest" ("reservationsId" uuid NOT NULL, "guestId" uuid NOT NULL, CONSTRAINT "PK_109a00b6e3e392156a7fb8c0761" PRIMARY KEY ("reservationsId", "guestId"))`);
         await queryRunner.query(`CREATE INDEX "IDX_741356e6e42fe42fd663805a5b" ON "reservations_guests_guest" ("reservationsId") `);
         await queryRunner.query(`CREATE INDEX "IDX_15f90620f2e0f6da2220148674" ON "reservations_guests_guest" ("guestId") `);
