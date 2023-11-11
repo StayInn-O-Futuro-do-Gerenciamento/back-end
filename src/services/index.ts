@@ -16,6 +16,9 @@ import { deleteManagerService } from "./manager/deleteManager.service";
 import { loginManagerService } from "./manager/loginManager.service";
 import { updateManagerService } from "./manager/updateManager.service";
 import { createReservationService } from "./reservation/createReservation.service";
+import { deleteReservationService } from "./reservation/deleteReservation.service";
+import { listAllReservatonsService } from "./reservation/listAllReservation.service";
+import { listReservationByIdService } from "./reservation/listReservationById.service";
 import { updateReservationService } from "./reservation/updateReservation.service";
 import { createRoomService } from "./room/createRoom.service";
 import { listRoomService } from "./room/listRoom.service";
@@ -48,4 +51,7 @@ export {
   updateHotelService,
   createReservationService,
   updateReservationService,
+  deleteReservationService,
+  listAllReservatonsService,
+  listReservationByIdService,
 };
