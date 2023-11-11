@@ -9,7 +9,6 @@ import {
 } from "../../entities";
 import { tReservationReq } from "../../interfaces";
 
-
 export const createReservationService = async (
   reservationData: tReservationReq,
   attendantId: string
@@ -71,11 +70,11 @@ export const createReservationService = async (
   await reservationsRepository.save(newReservation);
 
   const history = reservationsHistoryRepository.create({
-    checkin: newReservation.checkin,
-    checkout: newReservation.checkout,
-    id_guest: findGuest!.id,
-    id_room: findRoom!.id,
-    id_reservation: newReservation.id,
+    ...reservationRequest,
+    feedBack: newReservation.feedBack,
+    guestId: findGuest!.id,
+    roomID: findRoom!.id,
+    attendantId: findAttendant!.id,
   });
   await reservationsHistoryRepository.save(history);
 

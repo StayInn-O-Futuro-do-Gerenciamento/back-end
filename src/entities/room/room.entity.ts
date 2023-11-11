@@ -6,9 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Reservations } from "../reservations/reservations.entity";
-import { TypeRoom } from "../typeRoom/typeRoom.entity";
-import { Hotel } from "../hotel/hotel.entity";
+import { Hotel, Reservations, TypeRoom } from "../index";
 
 const Status = {
   clean: "Limpo",
