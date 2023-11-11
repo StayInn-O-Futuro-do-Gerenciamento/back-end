@@ -15,6 +15,7 @@ import { createManagerService } from "./manager/createManager.service";
 import { deleteManagerService } from "./manager/deleteManager.service";
 import { loginManagerService } from "./manager/loginManager.service";
 import { updateManagerService } from "./manager/updateManager.service";
+import { createOfferService } from "./offer/createOffer.service";
 import { createReservationService } from "./reservation/createReservation.service";
 import { deleteReservationService } from "./reservation/deleteReservation.service";
 import { listAllReservatonsService } from "./reservation/listAllReservation.service";
@@ -58,4 +59,5 @@ export {
   listReservationByIdService,
   listAllReservationsHistoryService,
   listReservationsHistoryByFilterService,
+  createOfferService,
 };

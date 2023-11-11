@@ -31,5 +31,5 @@ export class Offer {
   finishDate: string | Date;
 
   @ManyToMany(() => TypeRoom, (typeRoom) => typeRoom.offer)
-  typeRoom: TypeRoom[];
+  typeRoom: TypeRoom;
 }

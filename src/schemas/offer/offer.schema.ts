@@ -9,6 +9,8 @@ export const offerCreateSchema = z.object({
   typeRoom: z.string(),
 });
 
-export const offerReturnSchema = offerCreateSchema.extend({
-  id: z.string(),
-});
+export const offerReturnSchema = offerCreateSchema
+  .extend({
+    id: z.string(),
+  })
+  .omit({ typeRoom: true });
