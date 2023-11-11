@@ -29,6 +29,10 @@ import {
   updateOfferController,
 } from "./offer/offer.controller";
 import {
+  listReservationsHistoryController,
+  listReservationsHistoryControllerBYFilter,
+} from "./reservationHistory/reservationHistory.controller";
+import {
   createReservationController,
   deleteReservationController,
   listReservationByIdController,
@@ -80,4 +84,6 @@ export {
   createTypeRoomController,
   listTypeRoomController,
   updateTypeRoomController,
+  listReservationsHistoryController,
+  listReservationsHistoryControllerBYFilter,
 };

@@ -20,6 +20,8 @@ import { deleteReservationService } from "./reservation/deleteReservation.servic
 import { listAllReservatonsService } from "./reservation/listAllReservation.service";
 import { listReservationByIdService } from "./reservation/listReservationById.service";
 import { updateReservationService } from "./reservation/updateReservation.service";
+import { listAllReservationsHistoryService } from "./reservationsHistory/listAllReservationsHistory.service";
+import { listReservationsHistoryByFilterService } from "./reservationsHistory/listReservationHistoryByFilter.service";
 import { createRoomService } from "./room/createRoom.service";
 import { listRoomService } from "./room/listRoom.service";
 import { updateRoomService } from "./room/updateRoom.service";
@@ -54,4 +56,6 @@ export {
   deleteReservationService,
   listAllReservatonsService,
   listReservationByIdService,
+  listAllReservationsHistoryService,
+  listReservationsHistoryByFilterService,
 };
