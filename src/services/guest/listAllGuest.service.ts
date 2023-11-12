@@ -4,13 +4,20 @@ import { AppDataSource } from "../../data-source";
 import { guestReturnAllSchema } from "../../schemas";
 import { tGuestReturnAllSchema } from "../../interfaces";
 
-export const listAllGuestService = async (): Promise<tGuestReturnAllSchema> => {
+export const listAllGuestService = async (
+  page: number = 1,
+  pageSize: number = 10
+): Promise<tGuestReturnAllSchema> => {
   const guestRepository: Repository<Guest> = AppDataSource.getRepository(Guest);
+
+  const skip = (page - 1) * pageSize;
 
   const findGuest: Array<Guest> = await guestRepository.find({
     relations: {
       address: true,
     },
+    skip,
+    take: pageSize,
   });
 
   findGuest.forEach((guest: any) => {

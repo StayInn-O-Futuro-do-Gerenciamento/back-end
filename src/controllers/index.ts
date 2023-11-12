@@ -22,7 +22,6 @@ import {
   updateManagerController,
 } from "./manager/manager.controller";
 import {
-  listOfferByIdController,
   createOfferController,
   deleteOfferController,
   listOfferController,
@@ -39,6 +38,7 @@ import {
   listReservationController,
   updateReservationController,
 } from "./reservations/reservations.controller";
+
 import {
   listRoomController,
   createRoomController,
@@ -67,7 +67,6 @@ export {
   createManagerController,
   deleteManagerController,
   updateManagerController,
-  listOfferByIdController,
   createOfferController,
   deleteOfferController,
   listOfferController,

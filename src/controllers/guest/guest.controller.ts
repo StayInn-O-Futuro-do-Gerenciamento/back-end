@@ -19,7 +19,10 @@ export const getGuestController = async (
   request: Request,
   response: Response
 ): Promise<Response> => {
-  const listAllGuest = await listAllGuestService();
+  const page = parseInt(request.query.page as string, 10) || 1;
+  const pageSize = parseInt(request.query.pageSize as string, 10) || 10;
+
+  const listAllGuest = await listAllGuestService(page, pageSize);
 
   return response.status(200).json(listAllGuest);
 };
@@ -44,22 +47,4 @@ export const deleteGuestController = async (
   return response.status(204).send();
 };
 
-export const createAddressController = async (
-  request: Request,
-  response: Response
-) => {};
 
-export const getAddressController = async (
-  request: Request,
-  response: Response
-) => {};
-
-export const updateAddressController = async (
-  request: Request,
-  response: Response
-) => {};
-
-export const deleteAddressController = async (
-  request: Request,
-  response: Response
-) => {};
