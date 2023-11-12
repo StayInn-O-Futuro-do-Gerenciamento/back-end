@@ -11,7 +11,10 @@ export const createRoomController = async (req: Request, res: Response) => {
 };
 
 export const listRoomController = async (req: Request, res: Response) => {
-  const rooms = await listRoomService();
+  const page = parseInt(req.query.page as string) || 1;
+  const pageSize = parseInt(req.query.pageSize as string) || 10;
+
+  const rooms = await listRoomService(page, pageSize);
   return res.status(200).json(rooms);
 };
 
