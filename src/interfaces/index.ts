@@ -22,6 +22,11 @@ import {
   tManagerUpdateRequest,
 } from "./manager/manager.interface";
 import {
+  tOfferReq,
+  tOfferReqUpdate,
+  tOfferReturn,
+} from "./offer/offer.interface";
+import {
   tReservationReq,
   tReservationReturn,
   tReservationUpdateReq,
@@ -67,4 +72,7 @@ export {
   tReservationReturn,
   tReservationUpdateReq,
   tReservationUpdateReturn,
+  tOfferReq,
+  tOfferReturn,
+  tOfferReqUpdate,
 };

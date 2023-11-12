@@ -24,6 +24,11 @@ import {
   managerReturnCreteSchemaWhithoutPass,
 } from "./manager/manager.schema";
 import {
+  offerCreateSchema,
+  offerReturnSchema,
+  offerUpdateSchema,
+} from "./offer/offer.schema";
+import {
   reservationCreateSchema,
   reservationReturnSchema,
   reservationUpdateSchema,
@@ -67,4 +72,7 @@ export {
   reservationReturnSchema,
   reservationUpdateSchema,
   reservationUpdateSchemaReturn,
+  offerCreateSchema,
+  offerReturnSchema,
+  offerUpdateSchema,
 };
