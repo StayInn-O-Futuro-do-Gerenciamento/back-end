@@ -19,10 +19,10 @@ export class Reservations {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ type: "date" })
+  @Column({ type: "timestamp" })
   checkin: Date | string;
 
-  @Column({ type: "date" })
+  @Column({ type: "timestamp" })
   checkout: Date | string;
 
   @Column({ type: "int" })

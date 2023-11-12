@@ -30,6 +30,6 @@ export class Offer {
   @Column({ type: "timestamp" })
   finishDate: string | Date;
 
-  @ManyToMany(() => TypeRoom, (typeRoom) => typeRoom.offer)
+  @OneToMany(() => TypeRoom, (typeRoom) => typeRoom.offer)
   typeRoom: TypeRoom;
 }
