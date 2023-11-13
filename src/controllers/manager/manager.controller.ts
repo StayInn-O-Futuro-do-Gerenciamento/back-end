@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   createManagerService,
   deleteManagerService,
+  listManagerByIdService,
   updateManagerService,
 } from "../../services";
 
@@ -31,4 +32,14 @@ export const deleteManagerController = async (
   await deleteManagerService(request.params.id);
 
   return response.status(204).send();
+};
+
+export const listManagerByIdController = async (
+  request: Request,
+  response: Response
+) => {
+  console.log(request.params.id);
+  const listManagerById = await listManagerByIdService(request.params.id);
+
+  return response.status(200).json(listManagerById);
 };
