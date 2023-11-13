@@ -15,6 +15,7 @@ import {
   listHotelController,
   updateHotelController,
 } from "./hotel/hotel.controller";
+import { loginController } from "./login/login.controller";
 import { loginManagerController } from "./manager/loginManager.controller";
 import {
   createManagerController,
@@ -85,4 +86,5 @@ export {
   updateTypeRoomController,
   listReservationsHistoryController,
   listReservationsHistoryControllerBYFilter,
+  loginController,
 };

@@ -10,6 +10,7 @@ import {
   typeRoomRouter,
   reservationsHistoryRouter,
   offerRouter,
+  loginRouter,
 } from "./routes";
 import { handleErrors } from "./errors";
 import express, { Application } from "express";
@@ -30,6 +31,7 @@ app.use("/typeRoom", typeRoomRouter);
 app.use("/reservation", reservationsRouter);
 app.use("/history", reservationsHistoryRouter);
 app.use("/offer", offerRouter);
+app.use("/login", loginRouter);
 
 app.use(handleErrors);
 export default app;
