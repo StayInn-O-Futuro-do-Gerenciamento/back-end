@@ -1,6 +1,7 @@
 import {
   createAttendantController,
   deleteAttendantController,
+  listAttendantByIdController,
   updateAttendantController,
 } from "./attendant/attendant.controller";
 import { loginAttendantController } from "./attendant/loginAttendant.controller";
@@ -20,6 +21,7 @@ import { loginManagerController } from "./manager/loginManager.controller";
 import {
   createManagerController,
   deleteManagerController,
+  listManagerByIdController,
   updateManagerController,
 } from "./manager/manager.controller";
 import {
@@ -87,4 +89,6 @@ export {
   listReservationsHistoryController,
   listReservationsHistoryControllerBYFilter,
   loginController,
+  listAttendantByIdController,
+  listManagerByIdController,
 };

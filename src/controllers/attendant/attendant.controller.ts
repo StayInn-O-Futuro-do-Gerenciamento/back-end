@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   createAttendantService,
   deleteAttendantService,
+  listAttendantByIdService,
   updateAttendantService,
 } from "../../services";
 
@@ -36,4 +37,13 @@ export const deleteAttendantController = async (
   await deleteAttendantService(request.params.id);
 
   return response.status(204).send();
+};
+
+export const listAttendantByIdController = async (
+  request: Request,
+  response: Response
+) => {
+  const listAttendantById = await listAttendantByIdService(request.params.id);
+
+  return response.status(200).json(listAttendantById);
 };

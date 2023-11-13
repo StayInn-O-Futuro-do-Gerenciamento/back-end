@@ -2,8 +2,8 @@ import { Router } from "express";
 import {
   createAttendantController,
   deleteAttendantController,
-  loginAttendantController,
   updateAttendantController,
+  listAttendantByIdController,
 } from "../../controllers";
 import { validateTokenMiddleware, verifyIdMiddleware } from "../../middlewares";
 import { Attendant, Manager } from "../../entities";
@@ -22,11 +22,7 @@ attendantRouter.post(
   },
   createAttendantController
 );
-attendantRouter.post(
-  "/login",
-  validateTokenMiddleware,
-  loginAttendantController
-);
+
 attendantRouter.patch(
   "/:id",
   validateTokenMiddleware,
@@ -47,3 +43,5 @@ attendantRouter.delete(
   },
   deleteAttendantController
 );
+
+attendantRouter.get("/:id", listAttendantByIdController);

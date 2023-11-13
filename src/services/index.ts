@@ -1,6 +1,6 @@
 import { createAttendantService } from "./attendant/createAttendant.service";
 import { deleteAttendantService } from "./attendant/deleteAttendant.service";
-import { loginAttendantService } from "./attendant/loginAttendant.service";
+import { listAttendantByIdService } from "./attendant/listAttendantById.service";
 import { updateAttendantService } from "./attendant/updateAttendant.service";
 import { createGuestService } from "./guest/createGuest.service";
 import { deleteGuestService } from "./guest/deleteGuest.service";
@@ -14,7 +14,7 @@ import { updateHotelService } from "./hotel/updateHotel.service";
 import { loginService } from "./login/login.service";
 import { createManagerService } from "./manager/createManager.service";
 import { deleteManagerService } from "./manager/deleteManager.service";
-import { loginManagerService } from "./manager/loginManager.service";
+import { listManagerByIdService } from "./manager/listManagerById.service";
 import { updateManagerService } from "./manager/updateManager.service";
 import { createOfferService } from "./offer/createOffer.service";
 import { deleteOfferService } from "./offer/deleteOffer.service";
@@ -36,12 +36,10 @@ import { updateTypeRoomService } from "./typeRoom/updateTypeRoom.service";
 export {
   createManagerService,
   deleteManagerService,
-  loginManagerService,
   updateManagerService,
   updateAttendantService,
   createAttendantService,
   deleteAttendantService,
-  loginAttendantService,
   createGuestService,
   updateGuestService,
   deleteGuestService,
@@ -68,4 +66,6 @@ export {
   listAllOfferService,
   deleteOfferService,
   loginService,
+  listAttendantByIdService,
+  listManagerByIdService,
 };
