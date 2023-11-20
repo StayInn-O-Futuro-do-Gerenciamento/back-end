@@ -43,7 +43,7 @@ export class TypeRoom {
   @Column({ type: "int" })
   roomTypeQuantity: number;
 
-  @ManyToMany(() => Room, (room) => room.typeRoom)
+  @OneToMany(() => Room, (room) => room.typeRoom)
   rooms: Room[];
 
   @ManyToOne(() => Offer, (offer) => offer.typeRoom)

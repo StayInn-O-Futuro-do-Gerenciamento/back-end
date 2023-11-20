@@ -8,6 +8,29 @@ export const listRoomService = async (
 ): Promise<any> => {
   const room: Repository<Room> = AppDataSource.getRepository(Room);
 
+  const usePagination =
+    typeof page === "number" &&
+    typeof pageSize === "number" &&
+    page > 0 &&
+    pageSize > 0;
+
+  if (!usePagination) {
+    const allRooms = await room.find({
+      relations: {
+        typeRoom: true,
+      },
+      order: {
+        roomNumber: "ASC",
+      },
+    });
+
+    allRooms.sort((a, b) => {
+      return compareAlphanumeric(a.roomNumber, b.roomNumber);
+    });
+
+    return allRooms;
+  }
+
   const skip = (page - 1) * pageSize;
 
   const findRoom = await room.find({
