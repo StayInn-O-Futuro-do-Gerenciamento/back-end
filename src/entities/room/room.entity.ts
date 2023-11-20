@@ -12,8 +12,6 @@ const Status = {
   clean: "Limpo",
   dirty: "Sujo",
   maintenance: "Em Manutenção",
-  occupied: "Ocupado",
-  available: "Disponível",
 };
 
 @Entity("room")
@@ -24,7 +22,7 @@ export class Room {
   @Column({ type: "varchar" })
   roomNumber: string;
 
-  @Column({ type: "enum", enum: Status, default: Status.available })
+  @Column({ type: "enum", enum: Status, default: Status.clean })
   status: string;
 
   @Column({ length: 20, type: "varchar" })
@@ -32,6 +30,9 @@ export class Room {
 
   @Column({ type: "varchar" })
   floor: string;
+
+  @Column({ type: "boolean" })
+  available: boolean;
 
   @ManyToOne(() => Hotel, (hotel) => hotel.rooms)
   @JoinColumn()
