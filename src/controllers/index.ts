@@ -4,7 +4,7 @@ import {
   listAttendantByIdController,
   updateAttendantController,
 } from "./attendant/attendant.controller";
-import { loginAttendantController } from "./attendant/loginAttendant.controller";
+
 import {
   createGuestController,
   deleteGuestController,
@@ -17,7 +17,7 @@ import {
   updateHotelController,
 } from "./hotel/hotel.controller";
 import { loginController } from "./login/login.controller";
-import { loginManagerController } from "./manager/loginManager.controller";
+
 import {
   createManagerController,
   deleteManagerController,
@@ -57,7 +57,6 @@ import {
 export {
   createAttendantController,
   deleteAttendantController,
-  loginAttendantController,
   updateAttendantController,
   createGuestController,
   deleteGuestController,
@@ -66,7 +65,6 @@ export {
   createHotelController,
   listHotelController,
   updateHotelController,
-  loginManagerController,
   createManagerController,
   deleteManagerController,
   updateManagerController,

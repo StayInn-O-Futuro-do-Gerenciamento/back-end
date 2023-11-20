@@ -31,7 +31,7 @@ export class Room {
   @Column({ type: "varchar" })
   floor: string;
 
-  @Column({ type: "boolean" })
+  @Column({ type: "boolean", default: true })
   available: boolean;
 
   @ManyToOne(() => Hotel, (hotel) => hotel.rooms)

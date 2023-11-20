@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateUser1700488109412 implements MigrationInterface {
-    name = 'CreateUser1700488109412'
+export class CreateUser1700512088153 implements MigrationInterface {
+    name = 'CreateUser1700512088153'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "attendant" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(50) NOT NULL, "password" character varying NOT NULL, "type" character varying NOT NULL DEFAULT 'Attendant', "managerId" uuid, CONSTRAINT "PK_0f816ac9013a3351bfb034bdc2a" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "room" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "roomNumber" character varying NOT NULL, "status" "public"."room_status_enum" NOT NULL DEFAULT 'Limpo', "secretKey" character varying(20) NOT NULL, "floor" character varying NOT NULL, "available" boolean NOT NULL, "hotelId" uuid, "typeRoomId" uuid, CONSTRAINT "PK_c6d46db005d623e691b2fbcba23" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "room" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "roomNumber" character varying NOT NULL, "status" "public"."room_status_enum" NOT NULL DEFAULT 'Limpo', "secretKey" character varying(20) NOT NULL, "floor" character varying NOT NULL, "available" boolean NOT NULL DEFAULT true, "hotelId" uuid, "typeRoomId" uuid, CONSTRAINT "PK_c6d46db005d623e691b2fbcba23" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "reservations" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "checkin" TIMESTAMP NOT NULL, "checkout" TIMESTAMP NOT NULL, "numberAdults" integer NOT NULL, "numberKids" integer NOT NULL, "feedBack" integer NOT NULL DEFAULT '5', "attendantId" uuid, "roomsId" uuid, CONSTRAINT "PK_da95cef71b617ac35dc5bcda243" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "guest" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(50) NOT NULL, "rg" character varying(10) NOT NULL, "cpf" character varying(11) NOT NULL, "passport" character varying(6), "nationality" character varying(15) NOT NULL, "phoneNumbers" character varying array NOT NULL, "emergencyContacts" character varying array NOT NULL, "addressId" uuid, CONSTRAINT "REL_6269845e556a23fe5eabac5a33" UNIQUE ("addressId"), CONSTRAINT "PK_57689d19445de01737dbc458857" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "address" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "street" character varying(50) NOT NULL, "number" character varying(10) NOT NULL, "city" character varying(10) NOT NULL, "state" character varying(10) NOT NULL, "zipCode" character varying(10) NOT NULL, CONSTRAINT "PK_d92de1f82754668b5f5f5dd4fd5" PRIMARY KEY ("id"))`);
