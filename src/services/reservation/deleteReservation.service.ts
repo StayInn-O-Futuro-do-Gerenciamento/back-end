@@ -25,6 +25,7 @@ export const deleteReservationService = async (id: string) => {
     },
   });
 
+  room!.available = true;
   room!.status = "Sujo";
 
   await roomRepository.save(room!);
