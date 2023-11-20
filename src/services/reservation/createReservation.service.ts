@@ -56,7 +56,7 @@ export const createReservationService = async (
     },
   });
 
-  findRoom!.status = "Ocupado";
+  findRoom!.available = false;
 
   roomRepository.save(findRoom!);
 
