@@ -31,6 +31,7 @@ export const returnRoomCreateSchema = roomCreateSchema.extend({
 
 export const updateStatusRoomRequest = z.object({
   status: z.string(),
+  available: z.boolean(),
 });
 
 export const returnUpdateStatusRoomRequest = updateStatusRoomRequest.extend({

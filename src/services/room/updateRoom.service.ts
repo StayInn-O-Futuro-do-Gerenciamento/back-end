@@ -27,6 +27,7 @@ export const updateRoomService = async (
   const newRoom = roomRepository.create({
     ...oldData,
     status: roomData.status,
+    available: roomData.available,
   });
 
   await roomRepository.save(newRoom);
