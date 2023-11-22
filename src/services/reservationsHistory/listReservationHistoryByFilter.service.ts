@@ -21,6 +21,9 @@ export const listReservationsHistoryByFilterService = async (
       where: {
         id: history.roomID,
       },
+      relations: {
+        typeRoom: true,
+      },
     });
     const findAttendant = await attendantRepository.findOne({
       where: {

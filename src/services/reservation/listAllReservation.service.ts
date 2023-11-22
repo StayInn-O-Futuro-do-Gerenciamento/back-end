@@ -10,7 +10,9 @@ export const listAllReservatonsService = async (): Promise<any> => {
     await reservationsRepository.find({
       relations: {
         guests: true,
-        rooms: true,
+        rooms: {
+          typeRoom: true,
+        },
         attendant: true,
       },
     });
