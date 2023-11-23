@@ -2,6 +2,32 @@ import { Repository } from "typeorm";
 import { ReservationsHistory, Guest, Attendant, Room } from "../../entities";
 import { AppDataSource } from "../../data-source";
 
+// export const listReservationsHistoryByFilterService = async (
+//   filter: string,
+//   value: string
+// ): Promise<any> => {
+//   const reservationsHistoryRepository: Repository<ReservationsHistory> =
+//     AppDataSource.getRepository(ReservationsHistory);
+
+//   let query = reservationsHistoryRepository
+//     .createQueryBuilder("history")
+//     .leftJoinAndSelect("history.room", "room")
+//     .leftJoinAndSelect("history.attendant", "attendant")
+//     .leftJoinAndSelect("history.guest", "guest")
+//     .leftJoinAndSelect("guest.emergencyContacts", "emergencyContacts");
+
+//   if (filter === "guest") {
+//     query = query.where("guest.id = :value", { value });
+//   } else if (filter === "attendant") {
+//     query = query.where("attendant.id = :value", { value });
+//   } else if (filter === "room") {
+//     query = query.where("room.id = :value", { value });
+//   }
+
+//   const filteredReservations = await query.getMany();
+//   return filteredReservations;
+// };
+
 export const listReservationsHistoryByFilterService = async (
   filter: string,
   value: string

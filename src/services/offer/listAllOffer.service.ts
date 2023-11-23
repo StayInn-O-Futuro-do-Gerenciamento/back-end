@@ -7,7 +7,9 @@ export const listAllOfferService = async (): Promise<any> => {
 
   const allOffer = await offerRepository.find({
     relations: {
-      typeRoom: true,
+      typeRoom: {
+        rooms: true,
+      },
     },
   });
 
