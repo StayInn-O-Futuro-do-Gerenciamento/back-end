@@ -7,6 +7,8 @@ export const hotelCreateSchema = z.object({
   number: z.string().max(5),
   zipCode: z.string().max(8),
   city: z.string().max(40),
+  numberRoomsTotal: z.number(),
+  roomsPerFloor: z.number(),
 });
 
 export const hotelReturnSchema = hotelCreateSchema.extend({
