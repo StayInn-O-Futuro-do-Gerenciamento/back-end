@@ -29,11 +29,11 @@ export const returnGuestSchema = z.object({
   cpf: z.string(),
   passport: z.string(),
   nationality: z.string(),
-  phoneNumbers: z.array(z.string().max(9)),
+  phoneNumbers: z.array(z.string().max(10)),
   emergencyContacts: z.array(
     z.object({
       name: z.string().max(50),
-      phoneNumber: z.string().max(9),
+      phoneNumber: z.string().max(10),
     })
   ),
   address: addressReturnSchema,
