@@ -14,6 +14,7 @@ import {
 } from "./routes";
 import { handleErrors } from "./errors";
 import express, { Application } from "express";
+import { wppConnectRouter } from "./routes/wpp";
 
 const app: Application = express();
 
@@ -32,6 +33,7 @@ app.use("/reservation", reservationsRouter);
 app.use("/history", reservationsHistoryRouter);
 app.use("/offer", offerRouter);
 app.use("/login", loginRouter);
+app.use("/wpp", wppConnectRouter);
 
 app.use(handleErrors);
 export default app;

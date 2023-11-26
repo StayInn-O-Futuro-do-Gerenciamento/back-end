@@ -6,8 +6,10 @@ import {
   Guest,
   Room,
   ReservationsHistory,
+  wppConnect,
 } from "../../entities";
 import { tReservationReq } from "../../interfaces";
+import axios from "axios";
 
 export const createReservationService = async (
   reservationData: tReservationReq,
@@ -25,6 +27,9 @@ export const createReservationService = async (
 
   const reservationsHistoryRepository: Repository<ReservationsHistory> =
     AppDataSource.getRepository(ReservationsHistory);
+
+  const wppInstanceRepo: Repository<wppConnect> =
+    AppDataSource.getRepository(wppConnect);
 
   const {
     room: roomId,
@@ -77,6 +82,49 @@ export const createReservationService = async (
     attendantId: findAttendant!.id,
   });
   await reservationsHistoryRepository.save(history);
+
+  // SEND MESSAGE
+  const findInstance: Array<wppConnect> | null = await wppInstanceRepo.find();
+
+  if (findInstance) {
+    const baseUrl = "https://api.dietia.com.br/message/sendText";
+    const instanceName = findInstance[0].instanceName;
+    const token = findInstance[0].token;
+    const number = findGuest?.phoneNumbers[0];
+
+    const headers = {
+      "Content-Type": "application/json",
+      apikey: token,
+    };
+    console.log(instanceName);
+    console.log(headers);
+    try {
+      const responseWpp = await axios.post(
+        `${baseUrl}/${instanceName}`,
+
+        {
+          number: number,
+          options: {
+            delay: 1200,
+            presence: "composing",
+            linkPreview: false,
+          },
+          textMessage: {
+            text: `Sua reserva foi efetuada com sucesso! ${findGuest?.name}`,
+          },
+        },
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            apikey: token,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const responseReservation: any = { ...newReservation };
   delete responseReservation.attendant.password;

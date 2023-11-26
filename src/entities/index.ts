@@ -8,6 +8,7 @@ import { Reservations } from "./reservations/reservations.entity";
 import { ReservationsHistory } from "./reservationsHistory/reservationsHistory.entity";
 import { Room } from "./room/room.entity";
 import { TypeRoom } from "./typeRoom/typeRoom.entity";
+import { wppConnect } from "./wpp/wpp.entity";
 
 export {
   Address,
@@ -20,4 +21,5 @@ export {
   ReservationsHistory,
   Room,
   TypeRoom,
+  wppConnect,
 };
