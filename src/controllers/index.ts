@@ -54,8 +54,11 @@ import {
   updateTypeRoomController,
 } from "./typeRoom/typeRoom.controller";
 
+import { wppConnectController } from "./wpp/wppConnect.controller";
+
 export {
   createAttendantController,
+  wppConnectController,
   deleteAttendantController,
   updateAttendantController,
   createGuestController,

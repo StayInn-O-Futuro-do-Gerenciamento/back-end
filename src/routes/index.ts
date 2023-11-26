@@ -8,6 +8,7 @@ import { reservationsRouter } from "./reservations/reservations.routes";
 import { reservationsHistoryRouter } from "./reservationsHistory/reservationsHistory.routes";
 import { roomRouter } from "./room/room.routes";
 import { typeRoomRouter } from "./typeRoom/typeRoom.routes";
+import { wppConnectRouter } from "./wpp";
 
 export {
   attendantRouter,
@@ -20,4 +21,5 @@ export {
   typeRoomRouter,
   reservationsHistoryRouter,
   loginRouter,
+  wppConnectRouter,
 };

@@ -10,6 +10,7 @@ import {
 import { Attendant } from "../attendant/attendant.entity";
 import { Hotel } from "../hotel/hotel.entity";
 import { hashSync } from "bcryptjs";
+import { wppConnect } from "../wpp/wpp.entity";
 
 @Entity("manager")
 export class Manager {
@@ -27,6 +28,9 @@ export class Manager {
 
   @OneToOne(() => Hotel, (hotel) => hotel.manager)
   hotel: Hotel;
+
+  @OneToOne(() => wppConnect, (wpp) => wpp.manager)
+  wpp: wppConnect;
 
   @OneToMany(() => Attendant, (attendant) => attendant.manager)
   attendants: Attendant[];
