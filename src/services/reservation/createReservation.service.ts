@@ -7,6 +7,7 @@ import {
   Room,
   ReservationsHistory,
   wppConnect,
+  Hotel,
 } from "../../entities";
 import { tReservationReq } from "../../interfaces";
 import axios from "axios";
@@ -28,6 +29,8 @@ export const createReservationService = async (
   const reservationsHistoryRepository: Repository<ReservationsHistory> =
     AppDataSource.getRepository(ReservationsHistory);
 
+  const hotelRepository: Repository<Hotel> = AppDataSource.getRepository(Hotel);
+
   const wppInstanceRepo: Repository<wppConnect> =
     AppDataSource.getRepository(wppConnect);
 
@@ -37,12 +40,16 @@ export const createReservationService = async (
     ...reservationRequest
   } = reservationData;
 
+  const findHotel = await hotelRepository.find();
+
   const findRoom = await roomRepository.findOne({
     where: {
       id: roomId,
     },
     relations: {
-      typeRoom: true,
+      typeRoom: {
+        offer: true,
+      },
     },
   });
 
@@ -83,6 +90,26 @@ export const createReservationService = async (
   });
   await reservationsHistoryRepository.save(history);
 
+  const formatarDataHora = (data: any) => {
+    const dia = String(data.getDate()).padStart(2, "0");
+    const mes = String(data.getMonth() + 1).padStart(2, "0"); // Mês é baseado em zero
+    const ano = data.getFullYear();
+
+    return `${dia}/${mes}/${ano} ${10}:${30}`;
+  };
+
+  const priceCalculator = (room: any) => {
+    const basePrice = parseFloat(room.typeRoom.price);
+
+    if (room.typeRoom.offer) {
+      const discount = parseFloat(room.typeRoom.offer.discount);
+      const discountPrice = basePrice - (basePrice * discount) / 100;
+      return discountPrice;
+    } else {
+      return basePrice;
+    }
+  };
+
   // SEND MESSAGE
   const findInstance: Array<wppConnect> | null = await wppInstanceRepo.find();
 
@@ -96,8 +123,6 @@ export const createReservationService = async (
       "Content-Type": "application/json",
       apikey: token,
     };
-    console.log(instanceName);
-    console.log(headers);
     try {
       const responseWpp = await axios.post(
         `${baseUrl}/${instanceName}`,
@@ -110,10 +135,29 @@ export const createReservationService = async (
             linkPreview: false,
           },
           textMessage: {
-            text: `Sua reserva foi efetuada com sucesso! ${findGuest?.name}`,
+            text: `🛎️ Checkin e Checkout Confirmados! 🏨
+
+            Olá ${findGuest?.name}! 😊
+
+            É um prazer receber você no ${
+              findHotel[0].name
+            }! Seu checkin foi concluído com sucesso. 🎉
+
+            ⏰Detalhes do Checkin:
+
+            Data e Hora: ${formatarDataHora(reservationData.checkin)}
+            Número do Quarto: ${findRoom?.roomNumber}
+            Estamos aqui para tornar sua estadia incrível! Aproveite cada momento conosco.
+
+            ⏰Detalhes do Checkout:
+
+            Data e Hora: ${formatarDataHora(reservationData.checkin)}
+            Valor Total: ${priceCalculator(findRoom)}
+            Agradecemos por escolher ${
+              findHotel[0].name
+            }. Esperamos que tenha tido uma estadia excepcional. Até a próxima visita! 👋`,
           },
         },
-
         {
           headers: {
             "Content-Type": "application/json",
