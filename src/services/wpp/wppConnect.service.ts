@@ -28,6 +28,8 @@ export const wppConnectService = async (
       },
     });
 
+  console.log(token, user, api_key);
+
   if (wppAlreadyExists) {
     throw new AppError("Instância já existe na DB", 409);
   }
