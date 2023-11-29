@@ -46,5 +46,3 @@ export const deleteGuestController = async (
 
   return response.status(204).send();
 };
-
-
