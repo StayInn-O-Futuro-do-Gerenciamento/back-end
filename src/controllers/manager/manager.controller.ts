@@ -38,7 +38,6 @@ export const listManagerByIdController = async (
   request: Request,
   response: Response
 ) => {
-  console.log(request.params.id);
   const listManagerById = await listManagerByIdService(request.params.id);
 
   return response.status(200).json(listManagerById);

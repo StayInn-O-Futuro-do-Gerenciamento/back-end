@@ -92,7 +92,7 @@ export const createReservationService = async (
 
   const formatarDataHora = (data: any) => {
     const dia = String(data.getDate()).padStart(2, "0");
-    const mes = String(data.getMonth() + 1).padStart(2, "0"); // Mês é baseado em zero
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
     const ano = data.getFullYear();
 
     return `${dia}/${mes}/${ano} ${10}:${30}`;
@@ -110,7 +110,6 @@ export const createReservationService = async (
     }
   };
 
-  // SEND MESSAGE
   const findInstance: Array<wppConnect> | null = await wppInstanceRepo.find();
 
   if (findInstance) {
